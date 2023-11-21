@@ -1,2 +1,2 @@
-src/__pycache__/**/*
-data/raw/**/*
+src/__pycache__/
+data/raw/
