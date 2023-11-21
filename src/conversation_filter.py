@@ -5,29 +5,7 @@ from model import Code, Conversation, get_file_name, get_json_value_of_dict
 
 
 class ConversationFilter:
-
-    def filter_conversations_without_code(self, path: str, print_process: bool = True):
-        conversations_by_url = self.__load_conversations(path)
-        conversations_without_code = self.__get_conversations_without_code(
-            conversations_by_url, print_process)
-
-        python_conversation = self.__get_python_conversations(
-            conversations_by_url, print_process)
-        js_conversation = self.__get_js_conversations(
-            conversations_by_url, print_process)
-        ts_conversation = self.__get_ts_conversations(
-            conversations_by_url, print_process)
-        java_conversation = self.__get_java_conversations(
-            conversations_by_url, print_process)
-
-        self.__save_conversations(
-            conversations_without_code, path, 'with-code')
-        self.__save_conversations(python_conversation, path, 'python')
-        self.__save_conversations(js_conversation, path, 'javascript')
-        self.__save_conversations(ts_conversation, path, 'typescript')
-        self.__save_conversations(java_conversation, path, 'java')
-
-    def __load_conversations(self, path: str) -> dict[str, list[Conversation]]:
+    def load_conversations(self, path: str) -> dict[str, list[Conversation]]:
         conversations_by_url = {}
         with open(path, "r") as file:
             data = json.load(file)
@@ -49,7 +27,7 @@ class ConversationFilter:
 
         return conversations_by_url
 
-    def __get_conversations_without_code(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
+    def get_conversations_with_code(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
         if (print_process):
             print("Filtering conversations without code...")
         filtered_conversations = dict(list(map(lambda item: (
@@ -57,7 +35,7 @@ class ConversationFilter:
 
         return filtered_conversations
 
-    def __get_python_conversations(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
+    def get_python_conversations(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
         if (print_process):
             print("Filtering python conversations...")
         filtered_conversations = {}
@@ -73,7 +51,7 @@ class ConversationFilter:
 
         return filtered_conversations
 
-    def __get_js_conversations(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
+    def get_js_conversations(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
         if (print_process):
             print("Filtering js conversations...")
         filtered_conversations = {}
@@ -89,7 +67,7 @@ class ConversationFilter:
 
         return filtered_conversations
 
-    def __get_ts_conversations(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
+    def get_ts_conversations(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
         if (print_process):
             print("Filtering ts conversations...")
         filtered_conversations = {}
@@ -105,7 +83,7 @@ class ConversationFilter:
 
         return filtered_conversations
 
-    def __get_java_conversations(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
+    def get_java_conversations(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
         if (print_process):
             print("Filtering java conversations...")
         filtered_conversations = {}
@@ -124,14 +102,13 @@ class ConversationFilter:
     def __filter_conversations_without_code(self, conversations: list[Conversation]) -> list[Conversation]:
         return list(filter(lambda conversation: conversation.has_code(), conversations))
 
-    def __save_conversations(self, conversations_by_url: dict[str, list[Conversation]], path: str, type: str):
-        file_name = get_file_name(path)
-        save_dir = f"../data/interim/conversations-{type}"
+    def save_conversations(self, conversations_by_url: dict[str, list[Conversation]], type: str):
+        save_dir = f"../data/interim/filtered-conversations"
 
         if not os.path.exists(save_dir):
             os.mkdir(save_dir)
 
-        save_path = f"{save_dir}/{file_name}.json"
+        save_path = f"{save_dir}/conversations-{type}.json"
 
         value = get_json_value_of_dict(conversations_by_url)
         with open(save_path, "w") as file:
