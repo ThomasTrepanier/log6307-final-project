@@ -1,0 +1,59 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{import}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Replication project\\
+{\footnotesize Source code properties of defective infrastructure as code scripts}
+}
+
+\author{\IEEEauthorblockN{Nicolas Legros}
+    \IEEEauthorblockA{\textit{} \\
+        Montréal, Canada \\
+        nicoals.legros@polytml.ca}
+    \and
+    \IEEEauthorblockN{Thomas Trépanier}
+    \IEEEauthorblockA{\textit{} \\
+        Montréal, Canada \\
+        thomas.trépanier@polytml.ca}
+}
+
+\maketitle
+
+\begin{abstract}
+    \textit{Context:} We were tasked with replicating the paper \textit{Source Code Properties of Defective Infrastructure as Code Scripts} by Rahman and Williams. More precisely, we had to replicate the repository mining for the Mozilla, OpenStack and Wikimedia organization, and process the repositories with the method desribed in section 3.1.1 and 3.1.2 of the paper. Furthermore, we had to use the dataset provided with the paper to answer their first and third research question (\textit{RQ}). \\
+    \textit{Objective:} We aimed at completing the mining and processing section of the paper as they described. We also aimed at obtaining the same results for \textit{RQ\#1} as the analysis should yield the same result considering it would be based on the same dataset. For \textit{RQ\#3}, we wanted to obtain similar prediction model results as the one obtained in the paper, altought it would be difficult for us to obtain the exact same results as the author did not provide the parameters of their models. \\
+    \textit{Methodology:} We used the Mann-Whitney U test with the Scikit
+    Learn package and we computed the Cliff’s Delta by calculating it with Neilernst’s package to answer \textit{RQ\#1}. To answer \textit{RQ\#3}, we completed a PCA analysis and used the Scikit Learn packages to construct the prediction model using the components determined by the PCA.\\
+    \textit{Results:} We obtained similar results for \textit{RQ\#1} with a few discreptencies, and our prediction model for \textit{RQ\#3} performed similarly compared to the ones reported in the original paper. \\
+    \textit{Conclusions:} We were able to mostly replicate the findings demonstrated in the original paper, which gave us more insight into the domain of repository mining and corroborated the results of the paper.\\
+\end{abstract}
+
+\begin{IEEEkeywords}
+    component, formatting, style, styling, insert
+\end{IEEEkeywords}
+
+
+\import{sections/}{01-problem-statement.tex}
+\import{sections/}{02-research-questions.tex}
+\import{sections/}{03-approach.tex}
+\import{sections/}{04-results.tex}
+\import{sections/}{05-conclusion.tex}
+
+
+
+\begin{thebibliography}{00}
+    \bibitem{b1} Rahman, Akond \& Williams, Laurie. (2019). ``Source Code Properties of Defective Infrastructure as Code Scripts''. Information and Software Technology. 112. 10.1016/j.infsof.2019.04.013.
+\end{thebibliography}
+
+\end{document}
