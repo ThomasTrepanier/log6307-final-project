@@ -30,6 +30,9 @@ class Conversation:
     def has_code(self) -> bool:
         return len(self.list_of_codes) > 0
 
+    def get_code_of_type(self, type: str) -> list[Code]:
+        return list(filter(lambda code: code.type == type, self.list_of_codes))
+
     # Write a method that makes Conversation JSON serializable
     def to_json(self):
         return {

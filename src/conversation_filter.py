@@ -8,9 +8,18 @@ class ConversationFilter:
 
     def filter_conversations_without_code(self, path: str, print_process: bool = True):
         conversations_by_url = self.__load_conversations(path)
-        conversations_by_url = self.__filter_conversations_without_code(
+        conversations_without_code = self.__get_conversations_without_code(
             conversations_by_url, print_process)
-        self.__save_conversations(conversations_by_url, path)
+
+        python_conversation = self.__get_python_conversations(
+            conversations_by_url, print_process)
+        js_conversation = self.__get_js_conversations(
+            conversations_by_url, print_process)
+
+        self.__save_conversations(
+            conversations_without_code, path, 'with-code')
+        self.__save_conversations(python_conversation, path, 'python')
+        self.__save_conversations(js_conversation, path, 'javascript')
 
     def __load_conversations(self, path: str) -> dict[str, list[Conversation]]:
         conversations_by_url = {}
@@ -34,20 +43,52 @@ class ConversationFilter:
 
         return conversations_by_url
 
-    def __filter_conversations_without_code(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
+    def __get_conversations_without_code(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
         if (print_process):
             print("Filtering conversations without code...")
         filtered_conversations = dict(list(map(lambda item: (
-            item[0], self.__filter_conversations(item[1])), conversations_by_url.items())))
+            item[0], self.__filter_conversations_without_code(item[1])), conversations_by_url.items())))
 
         return filtered_conversations
 
-    def __filter_conversations(self, conversations: list[Conversation]) -> list[Conversation]:
+    def __get_python_conversations(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
+        if (print_process):
+            print("Filtering python conversations...")
+        filtered_conversations = {}
+
+        for url, conversations in conversations_by_url.items():
+            for conversation in conversations:
+                python_codes = conversation.get_code_of_type("python")
+                if (len(python_codes) > 0):
+                    if (url not in filtered_conversations):
+                        filtered_conversations[url] = []
+                    filtered_conversations[url].append(Conversation(
+                        conversation.prompt, conversation.answer, python_codes))
+
+        return filtered_conversations
+
+    def __get_js_conversations(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
+        if (print_process):
+            print("Filtering js conversations...")
+        filtered_conversations = {}
+
+        for url, conversations in conversations_by_url.items():
+            for conversation in conversations:
+                js_codes = conversation.get_code_of_type("javascript")
+                if (len(js_codes) > 0):
+                    if (url not in filtered_conversations):
+                        filtered_conversations[url] = []
+                    filtered_conversations[url].append(Conversation(
+                        conversation.prompt, conversation.answer, js_codes))
+
+        return filtered_conversations
+
+    def __filter_conversations_without_code(self, conversations: list[Conversation]) -> list[Conversation]:
         return list(filter(lambda conversation: conversation.has_code(), conversations))
 
-    def __save_conversations(self, conversations_by_url: dict[str, list[Conversation]], path: str):
+    def __save_conversations(self, conversations_by_url: dict[str, list[Conversation]], path: str, type: str):
         file_name = get_file_name(path)
-        save_path = f"../data/interim/conversations-with-code/{file_name}.json"
+        save_path = f"../data/interim/conversations-{type}/{file_name}.json"
 
         value = get_json_value_of_dict(conversations_by_url)
         with open(save_path, "w") as file:
