@@ -1,10 +1,14 @@
 
 import json
 import os
+from conversation_io import ConversationIO
 from model import Code, Conversation, get_file_name, get_json_value_of_dict, string_not_in_english
 
 
 class ConversationExtractor:
+
+    def __init__(self):
+        self.io = ConversationIO()
 
     def extract_conversations_by_url(self, path: str, print_process: bool = True) -> dict[str, Conversation]:
         conversations_by_url = {}
@@ -59,16 +63,10 @@ class ConversationExtractor:
         return conversations_by_url
 
     def save_conversations(self, path: str, conversations_by_url: dict[str, Conversation]):
-        file_name = get_file_name(path)
         save_dir = "../data/interim/conversations"
-        if not os.path.exists(save_dir):
-            os.makedirs(save_dir)
+        file_name = get_file_name(path)
 
-        save_path = f"../data/interim/conversations/{file_name}.json"
-
-        value = get_json_value_of_dict(conversations_by_url)
-        with open(save_path, "w") as file:
-            json.dump(value, file, default=str)
+        self.io.save_conversations(save_dir, file_name, conversations_by_url)
 
     def is_csv_file(self, file: str):
         return file.split('.')[-1] == 'csv'

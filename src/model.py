@@ -56,10 +56,5 @@ def get_file_name(path: str):
     return extracted_substring
 
 
-def get_json_value_of_dict(conversations_by_url: dict[str, list[Conversation]]):
-    return dict(map(lambda item: (item[0], [conversation.to_json(
-    ) for conversation in item[1]]), conversations_by_url.items()))
-
-
 def string_not_in_english(string: str) -> bool:
     return not string.isascii()

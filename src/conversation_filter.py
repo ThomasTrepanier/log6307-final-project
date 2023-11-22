@@ -1,31 +1,17 @@
 
 import json
 import os
+from conversation_io import ConversationIO
 from model import Code, Conversation, get_file_name, get_json_value_of_dict
 
 
 class ConversationFilter:
+
+    def __init__(self):
+        self.io = ConversationIO()
+
     def load_conversations(self, path: str) -> dict[str, list[Conversation]]:
-        conversations_by_url = {}
-        with open(path, "r") as file:
-            data = json.load(file)
-
-            for url, conversations_json in data.items():
-                conversations = []
-                for conversation_json in conversations_json:
-                    prompt = conversation_json[Conversation.PROMPT_KEY]
-                    answer = conversation_json[Conversation.ANSWER_KEY]
-                    list_of_codes = []
-                    for code_json in conversation_json[Conversation.LIST_OF_CODE_KEY]:
-                        id = code_json[Code.ID_KEY]
-                        type = code_json[Code.TYPE_KEY]
-                        content = code_json[Code.CONTENT_KEY]
-                        list_of_codes.append(Code(id, type, content))
-                    conversations.append(Conversation(
-                        prompt, answer, list_of_codes))
-                conversations_by_url[url] = conversations
-
-        return conversations_by_url
+        return self.io.load_conversations(path)
 
     def get_conversations_with_code(self, conversations_by_url: dict[str, list[Conversation]], print_process: bool = True) -> dict[str, list[Conversation]]:
         if (print_process):
@@ -104,12 +90,6 @@ class ConversationFilter:
 
     def save_conversations(self, conversations_by_url: dict[str, list[Conversation]], type: str):
         save_dir = f"../data/interim/filtered-conversations"
+        file_name = f"conversation-{type}"
 
-        if not os.path.exists(save_dir):
-            os.mkdir(save_dir)
-
-        save_path = f"{save_dir}/conversations-{type}.json"
-
-        value = get_json_value_of_dict(conversations_by_url)
-        with open(save_path, "w") as file:
-            json.dump(value, file, default=str)
+        self.io.save_conversations(save_dir, file_name, conversations_by_url)
