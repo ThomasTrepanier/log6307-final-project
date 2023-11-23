@@ -4,7 +4,7 @@ from model import Code, Conversation
 
 
 class ConversationIO:
-    def load_conversations(self, path: str) -> dict[str, list[Conversation]]:
+    def load_conversations(self, path: str) -> 'dict[str, list[Conversation]]':
         conversations = {}
         with open(path, "r") as file:
             data = json.load(file)
@@ -24,7 +24,7 @@ class ConversationIO:
 
         return conversations
 
-    def save_conversations(self, save_dir, file_name, value: dict[str, list[Conversation]]):
+    def save_conversations(self, save_dir, file_name, value: 'dict[str, list[Conversation]]'):
         if not os.path.exists(save_dir):
             os.mkdir(save_dir)
 
@@ -34,6 +34,6 @@ class ConversationIO:
         with open(save_path, "w") as file:
             json.dump(json_value, file, default=str)
 
-    def __get_json_value_of_dict(self, conversations_by_url: dict[str, list[Conversation]]):
+    def __get_json_value_of_dict(self, conversations_by_url: 'dict[str, list[Conversation]]'):
         return dict(map(lambda item: (item[0], [conversation.to_json(
         ) for conversation in item[1]]), conversations_by_url.items()))

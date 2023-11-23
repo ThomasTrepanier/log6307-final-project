@@ -10,7 +10,7 @@ class ConversationExtractor:
     def __init__(self):
         self.io = ConversationIO()
 
-    def extract_conversations_by_url(self, path: str, print_process: bool = True) -> dict[str, Conversation]:
+    def extract_conversations_by_url(self, path: str, print_process: bool = True) -> 'dict[str, Conversation]':
         conversations_by_url = {}
 
         with open(path, "r") as file:
@@ -22,20 +22,19 @@ class ConversationExtractor:
                 for sharing_json in sharings_json:
                     sharing_url = sharing_json["URL"]
                     status = int(sharing_json["Status"])
+
+                    if (print_process):
+                        print(f"Extracting {sharing_url}...")
+
                     if (sharing_url in conversations_by_url):
                         if (print_process):
-                            print(f"Skipping {
-                                  sharing_url}, already in dict...")
+                            print(f"Skipping, already in dict...")
                         continue
 
                     if (status != 200):
                         if (print_process):
-                            print(f"Skipping {
-                                  sharing_url}, status is {status}...")
+                            print(f"Skipping, status is {status}...")
                         continue
-
-                    if (print_process):
-                        print(f"Extracting {sharing_url}...")
 
                     conversations = []
                     conversations_json = sharing_json["Conversations"]
@@ -62,7 +61,7 @@ class ConversationExtractor:
 
         return conversations_by_url
 
-    def save_conversations(self, path: str, conversations_by_url: dict[str, Conversation]):
+    def save_conversations(self, path: str, conversations_by_url: 'dict[str, Conversation]'):
         save_dir = "../data/interim/conversations"
         file_name = get_file_name(path)
 

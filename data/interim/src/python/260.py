@@ -1,0 +1,3 @@
+def _my_rule_impl(ctx):
+    flag_value = ctx.attr._my_custom_flag[BuildSettingInfo].value
+    ...

@@ -22,7 +22,7 @@ class Conversation:
     ANSWER_KEY = "Answer"
     LIST_OF_CODE_KEY = "ListOfCode"
 
-    def __init__(self, prompt: str, answer: str, list_of_codes: list[Code]):
+    def __init__(self, prompt: str, answer: str, list_of_codes: 'list[Code]'):
         self.prompt = prompt
         self.answer = answer
         self.list_of_codes = list_of_codes
@@ -30,7 +30,7 @@ class Conversation:
     def has_code(self) -> bool:
         return len(self.list_of_codes) > 0
 
-    def get_code_of_type(self, type: str) -> list[Code]:
+    def get_code_of_type(self, type: str) -> 'list[Code]':
         return list(filter(lambda code: code.type == type, self.list_of_codes))
 
     # Write a method that makes Conversation JSON serializable
