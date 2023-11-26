@@ -1,24 +1,11 @@
-d = {
-    "p_id": 1,
-    "billing": {
-        "first_name": "test"
-    }
-}
+import spacy
+nlp = spacy.load('en_core_web_lg')
 
+def printInfo(doc):
+    for token in doc:
+        print(token.text, token.lemma_, token.pos_, token.tag_,
+            token.shape_, token.is_alpha,
+       token.is_stop, token.ent_type_, token.dep_, token.head.text)
 
-class Billing(BaseModel):
-    first_name: str
-
-
-class Data(BaseModel):
-    p_id: int
-    billing: Billing
-
-
-class Order(MappingModel):
-    p_id: int
-    pre_name: str = Field(source='billing.first_name')
-
-
-order = Order.build_from_model(Data(**d))
-print(order.dict())
+doc = nlp("Barack Obama was not born in Hawaii")
+printInfo(doc)

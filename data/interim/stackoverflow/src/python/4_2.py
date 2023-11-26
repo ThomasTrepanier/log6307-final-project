@@ -1,22 +1,11 @@
-import tempfile
-from fastapi import FileResponse
+def updateblog (id:int, title:Optional[str]=None, body:Optional[str]=None, db:Session = Depends(get_db)):
 
+    if title!=None:
+            db.query(models.Blog).filter(models.Blog.id==id).update({'title':title})
+    
+    if body!=None:
+            db.query(models.Blog).filter(models.Blog.id==id).update({'body':body})
 
-class TempFileResponse(FileResponse):
-    def __init__(self, prefix, **params) -> None:
-        self.temp_file = tempfile.NamedTemporaryFile(prefix=prefix)
-        super().__init__(path=self.temp_file.name, **params)
-
-    def __del__(self):
-        # This will delete the file
-        self.temp_file.close()
-
-
-@router.get("/produce-data", response_class=FileResponse)
-async def produce() -> FileResponse:
-    file_name = "some_file_data.txt"
-    logger.info(f"Downloading data as {file_name}")
-    response_file = TempFileResponse(prefix="some_file_", filename=file_name)
-    with open(response_file.temp_file.name, "w") as f:
-        f.write("Hello, world!")
-    return response_file
+    db.commit()
+    
+    return f'Blog #{id} has been updated.'

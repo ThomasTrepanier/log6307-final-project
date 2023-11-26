@@ -1,32 +1,40 @@
-from walrus import Database, RateLimitException
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
-import uvicorn
-
-db = Database()
-rate = db.rate_limit('xxx', limit=5, per=60)  # in 60s just can only click 5 times
-
-app = FastAPI()
+import sys
+infi = sys.maxsize
 
 
-@app.exception_handler(RateLimitException)
-def parse_rate_litmit_exception(request: Request, exc: RateLimitException):
-    msg = {'success': False, 'msg': f'please have a tea for sleep, your ip is: {request.client.host}.'}
-    return JSONResponse(status_code=429, content=msg)
+def optimum_jump_recurse(arr, curr_pos, cost, path, res):
+    if curr_pos in path or cost > res or curr_pos < 0:
+        return infi
+    elif curr_pos > len(arr) - 1:
+        if cost < res:
+            res = cost
+        return cost
+
+    res = optimum_jump_recurse(arr, curr_pos + 2, cost + arr[curr_pos],
+                               path | {curr_pos}, res)
+    backward_cost = optimum_jump_recurse(arr, curr_pos - 1,
+                                         cost + arr[curr_pos],
+                                        path | {curr_pos}, res)
+    if res == backward_cost == infi:
+        return res
+    res = min(res, backward_cost)
+    actual_cost = res - cost
+    return res
 
 
-@app.get('/')
-def index():
-    return {'success': True}
+nums = [1, 2, 3, 4, 100]
+# nums = [1, 2, 3]
+# nums = [1]
+# nums = [1, 2]
+# nums = [1, 2, 3, 100, 200]
+# nums = [1, 1000, 3, 100, 200]
+# nums = [1, 1, 3, 100, 200]
+# nums = [1, 1, 3, 5, 100, 200]
+# nums = [1, 2, 3, 100, 4]
 
 
-@app.get('/important_api')
-@rate.rate_limited(lambda request: request.client.host)
-def query_important_data(request: Request):
-    data = 'important data'
-    return {'success': True, 'data': data}
+def optimum_jump(nums):
+    return optimum_jump_recurse(nums, 0, 0, set(), infi)
 
 
-if __name__ == "__main__":
-    uvicorn.run("code1228:app", debug=True, reload=True)
-
+print(optimum_jump(nums))

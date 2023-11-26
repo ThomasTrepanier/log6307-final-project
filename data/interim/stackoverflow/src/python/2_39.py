@@ -1,14 +1,6 @@
-import fitz
-
-my_pdf = r"C:\Users\Test\FileName.pdf"
-doc = fitz.open(my_pdf) 
-def pdftype(doc):
-    i=0
-    for page in doc:
-        if len(page.getText())>0: #for scanned page it will be 0
-            i+=1
-    if i>0:
-        print('full/partial text PDF file')
-    else:
-        print('only scanned images in PDF file')
-pdftype(doc)
+def minSubStr(str1, str2):
+    str1 = input("Enter the first string: ")
+    str2 = input("Enter the second string to check if the characters exist in the first string: ")
+    if all(s in str1 for s in str2):
+        return True
+    return False

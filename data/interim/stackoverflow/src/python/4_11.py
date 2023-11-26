@@ -1,13 +1,42 @@
-import pandas as pd
+from dataclasses import dataclass, field
+from typing import Callable, List, Union
+from dash.dependencies import handle_callback_args
+from dash.dependencies import Input, Output, State
 
 
-def my_append(self, x, ignore_index=False):
-    if ignore_index:
-        return pd.concat([self, x])
-    else:
-        return pd.concat([self, x]).reset_index(drop=True)
+@dataclass
+class Callback:
+    func: Callable
+    outputs: Union[Output, List[Output]]
+    inputs: Union[Input, List[Input]]
+    states: Union[State, List[State]] = field(default_factory=list)
+    kwargs: dict = field(default_factory=lambda: {"prevent_initial_call": False})
 
 
-if not hasattr(pd.DataFrame, "append"):
-    setattr(pd.DataFrame, "append", my_append)
+class CallbackManager:
+    def __init__(self):
+        self._callbacks = []
 
+    def callback(self, *args, **kwargs):
+        output, inputs, state, prevent_initial_call = handle_callback_args(
+            args, kwargs
+        )
+
+        def wrapper(func):
+            self._callbacks.append(
+                Callback(
+                    func,
+                    output,
+                    inputs,
+                    state,
+                    {"prevent_initial_call": prevent_initial_call}
+                )
+             )
+
+        return wrapper
+
+    def attach_to_app(self, app):
+        for callback in self._callbacks:
+            app.callback(
+                callback.outputs, callback.inputs, callback.states, **callback.kwargs
+            )(callback.func)

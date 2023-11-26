@@ -1,11 +1,10 @@
-def updateblog (id:int, title:Optional[str]=None, body:Optional[str]=None, db:Session = Depends(get_db)):
+def split_list(alist, wanted_parts=1):
+    length = len(alist)
+    return [ alist[i*length // wanted_parts: (i+1)*length // wanted_parts]
+             for i in range(wanted_parts) ]
 
-    if title!=None:
-            db.query(models.Blog).filter(models.Blog.id==id).update({'title':title})
-    
-    if body!=None:
-            db.query(models.Blog).filter(models.Blog.id==id).update({'body':body})
+lst = [[1,2,3,4], [2,3,4,5], [3,4,5,6]]
 
-    db.commit()
-    
-    return f'Blog #{id} has been updated.'
+ret =[]
+for mini_list in lst:
+    ret.append(split_list(mini_list, len(mini_list)))

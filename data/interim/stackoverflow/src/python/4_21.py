@@ -1,29 +1,40 @@
-import boto3
+import io
+from PIL import Image
+import pillow_heif
+from werkzeug.datastructures import FileStorage
 
-def count_objects_in_s3_folder(bucket_name, folder_name):
-    # Create an S3 client
-    s3 = boto3.client('s3')
+class Converter:
 
-    # Specify the bucket and prefix (folder) within the bucket
-    bucket = {'Bucket': bucket_name}
-    prefix = folder_name + '/'
+    def convert_heic_to_jpeg(self, file):
+        # Check if file is a .heic or .heif file
+        if file.filename.endswith(('.heic', '.heif', '.HEIC', '.HEIF')):
+            # Open image using PIL
+            # image = Image.open(file)
 
-    # Initialize the object count
-    object_count = 0
+            heif_file = pillow_heif.read_heif(file)
+            image = Image.frombytes(
+                heif_file.mode,
+                heif_file.size,
+                heif_file.data,
+                "raw",
+            )
 
-    # Use the list_objects_v2 API to retrieve the objects in the folder
-    paginator = s3.get_paginator('list_objects_v2')
-    response_iterator = paginator.paginate(Bucket=bucket_name, Prefix=prefix)
+            # Convert to JPEG
+            jpeg_image = image.convert('RGB')
 
-    # Iterate through the paginated responses
-    for response in response_iterator:
-        if 'Contents' in response:
-            object_count += len(response['Contents'])
+            # Save JPEG image to memory temp_img
+            temp_img = io.BytesIO()
+            jpeg_image.save(temp_img, format("jpeg"))
 
-    print(f"Number of objects in folder '{folder_name}': {object_count}")
+            # Reset file pointer to beginning of temp_img
+            temp_img.seek(0)
 
-# Provide the S3 bucket name and folder name to count objects in
-bucket_name = 'your_bucket_name'
-folder_name = 'your_folder_name'
+            # Create a FileStorage object
+            file_storage = FileStorage(temp_img, filename=f"{file.filename.split('.')[0]}.jpg")
 
-count_objects_in_s3_folder(bucket_name, folder_name)
+            # Set the mimetype to "image/jpeg"
+            file_storage.headers['Content-Type'] = 'image/jpeg'
+
+            return file_storage
+        else:
+            raise ValueError("File must be of type .heic or .heif")

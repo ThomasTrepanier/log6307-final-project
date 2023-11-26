@@ -1,21 +1,9 @@
-def up_arrow(a, b):
-  if b <= 2:
-    if b < 0:
-      raise ValueError
-    return (1, 2, 4)[b]
-  elif a == 1:
-    if b >> 363:
-      raise ValueError
-    return 1 << b  # This may run out of memory for large b.
-  elif a == 2:
-    if b > 5:
-      raise ValueError
-    if b == 5:
-      return 1 << 65536
-    return (16, 65536)[b - 3]
-  elif a == 3:
-    if b > 3:
-      raise ValueError
-    return 65536
-  else:
-    raise ValueError
+import pandas as pd 
+data = {'col1': ['cat', 'dog', 'mice'], 'col2' : ['black', 'white', 'grey'], 'col3' : ['small', 'medium', 'tinny'], 'col4': ['lovely','brave','fast']} 
+df = pd.DataFrame(data) 
+
+def getDictColumn_df1(df, new_col_name="newcol", cols_from_start=1):
+    df[new_col_name] = tuple(map(lambda row: row._asdict(), df.iloc[:,cols_from_start:].itertuples()))
+    return df[['col1', new_col_name]]
+
+getDictColumn_df1(df)

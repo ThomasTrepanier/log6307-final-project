@@ -1,19 +1,7 @@
-from enum import Enum, EnumMeta
+@dataclasses.dataclass(frozen=True)
+class SimpleClass:
+    a: int
 
-
-class MetaEnum(EnumMeta):
-    def __contains__(cls, item):
-        try:
-            cls(item)
-        except ValueError:
-            return False
-        return True    
-
-
-class BaseEnum(Enum, metaclass=MetaEnum):
-    pass
-
-
-class Stuff(BaseEnum):
-    foo = 1
-    bar = 5
+    @temp_unfreeze_for_postinit
+    def __post_init__(self, adder):
+        self.b = self.a + adder

@@ -1,7 +1,6 @@
-def replace_nan(worksheet, row, col, value, format=None):
-    if math.isnan(value):
-        return worksheet.write_blank(row, col, None, format)
-    else:
-        return None  # let xlsxwriter do its thing
-
-worksheet.add_write_handler(float, replace_nan)
+class index:
+    def __init__(self, seq):
+        self.seq = seq
+    def __getitem__(self, boolseq):
+        return [x for x, y in zip(boolseq, self.seq) if y]
+print(index(a)[b])

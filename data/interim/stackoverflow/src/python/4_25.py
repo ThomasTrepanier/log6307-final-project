@@ -1,23 +1,30 @@
-import re
+from typing import Any
 
-def text_to_html_paragraphs(text):
-    # First, replace multiple newlines with a single newline,
-    # so you don't get empty paragraphs
-    text = re.sub(r'\n\s*\n', '\n', text)
+from pydantic import BaseModel, Field
+from pymapme.models.mapping import MappingModel
 
-    # Split the text into lines
-    lines = text.split('\n')
 
-    # Wrap each line in a <p> tag and join them
-    return ''.join(f'<p>{line.strip()}</p>\n' for line in lines)
+class Person(BaseModel):
+    name: str
+    surname: str
 
-text = """His this 
 
-is 
+class Profile(BaseModel):
+    nickname: str
+    person: Person
 
-a sample
 
-String"""
+class User(MappingModel):
+    nickname: str = Field(source='nickname')
+    first_name: str = Field(source='person.name')
+    surname: str = Field(source='person.surname')
+    full_name: str = Field(source_func='_get_full_name')
 
-html_paragraphs = text_to_html_paragraphs(text)
-print(html_paragraphs)
+    @staticmethod
+    def _get_full_name(model: Profile, default: Any):
+        return model.person.name + ' ' + model.person.surname
+
+
+profile = Profile(nickname='baobab', person=Person(name='John', surname='Smith'))
+user = User.build_from_model(profile)
+print(user.dict())  # {'nickname': 'baobab', 'first_name': 'John', 'surname': 'Smith', 'full_name': 'John Smith'}

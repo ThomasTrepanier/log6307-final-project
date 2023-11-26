@@ -1,18 +1,60 @@
-def count_letters(text):
-  result = {}
-  # Go through each letter in the text
-  for letter in text.lower():
-    # Check if the letter needs to be counted or not
-    if letter.isalpha() and letter not in result:
-    # Add or increment the value in the dictionary
-      result[letter] = text.count(letter)
-  return result
+code_string = """
+#A comment
+def foo(a, b):
+  return a + b
 
-print(count_letters("AaBbCc"))
-# Should be {'a': 2, 'b': 2, 'c': 2}
+def bir(a, b):
+  c = a + b
+  return c
 
-print(count_letters("Math is fun! 2+2=4"))
-# Should be {'m': 1, 'a': 1, 't': 1, 'h': 1, 'i': 1, 's': 1, 'f': 1, 'u': 1, 'n': 1}
+class Bar(object):
+  def __init__(self):
+    self.my_list = [
+        'a',
+        'b',
+    ]
 
-print(count_letters("This is a sentence."))
-# Should be {'t': 2, 'h': 1, 'i': 2, 's': 3, 'a': 1, 'e': 3, 'n': 2, 'c': 1}
+def baz():
+  return [
+1,
+  ]
+
+""".strip()
+
+lines = code_string.split('\n')
+
+#looking for lines with 'def' keywords
+defidxs = [e[0] for e in enumerate(lines) if 'def' in e[1]]
+
+#getting the indentation of each 'def'
+indents = {}
+for i in defidxs:
+    ll = lines[i].split('def')
+    indents[i] = len(ll[0])
+
+#extracting the strings
+end = len(lines)-1
+while end > 0:
+    if end < defidxs[-1]:
+        defidxs.pop()
+    try:
+        start = defidxs[-1]
+    except IndexError: #break if there are no more 'def'
+        break
+
+    #empty lines between functions will cause an error, let's remove them
+    if len(lines[end].strip()) == 0:
+        end = end -1
+        continue
+
+    try:
+        #fix lines removing indentation or compile will not compile
+        fixlines = [ll[indents[start]:] for ll in lines[start:end+1]] #remove indentation
+        body = '\n'.join(fixlines)
+        compile(body, '<string>', 'exec') #if it fails, throws an exception
+        print(body)
+        end = start #no need to parse less line if it succeed.
+    except:
+        pass
+
+    end = end -1

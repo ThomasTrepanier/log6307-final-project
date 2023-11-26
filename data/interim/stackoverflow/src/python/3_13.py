@@ -1,10 +1,13 @@
-import random
-import torchvision.transforms as T
-
-class RandomChoice(torch.nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.t = random.choice(self.transforms)
-
-    def __call__(self, img):
-        return self.t(img)
+def func(n):
+    l = []
+    for i in range(n):
+        tmp = []
+        for j in range(n):
+            if j==i:
+                tmp.append(0)
+            elif j>i:
+                tmp.append(9)
+            elif j<n:
+                tmp.append(5)
+        l.append(tmp)
+    return l

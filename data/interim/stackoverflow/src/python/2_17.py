@@ -1,9 +1,7 @@
-@report_execution_time
-def main_test():
+def fun_price_buy():
+    price_buy = np.random.randint(50000,300000)
+    return price_buy
 
-    os.system('python -m pytest ..')
-
-
-if __name__ == "__main__":
-
-    main_test()
+# inline, no temporaty variable is needed
+def fun_price_buy():
+    return np.random.randint(50000,300000)

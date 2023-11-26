@@ -1,5 +1,12 @@
-def check_db(context):
-    # Do the code for running "SELECT 1" in the DB
-    return
+from flask_marshmallow import Marshmallow
+from .models import Author
 
-updater.job_queue.run_repeating(check_db, interval=21600, first=21600)
+ma = Marshmallow()
+
+class AuthorSchema(ma.SQLAlchemySchema):
+    class Meta:
+        model = Author
+
+    id = ma.auto_field()
+    name = ma.auto_field()
+    books = ma.auto_field()

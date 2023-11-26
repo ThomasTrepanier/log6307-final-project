@@ -1,19 +1,14 @@
-def split_check(bill=0, people=0, tax_percentage=0.09, tip_percentage=0.15):
-    new_check = (bill * tax_percentage) + bill
-    new_tip = bill * tip_percentage
-    per_person = (new_check + new_tip) / people
-    return per_person
+import fitz
 
-bill = float(input())
-people = int(input())
-
-# Cost per diner at the default tax and tip percentages
-print('Cost per diner:', split_check(bill, people))
-
-bill = float(input())
-people = int(input())
-new_tax_percentage = float(input())
-new_tip_percentage = float(input())
-
-# Cost per diner at different tax and tip percentages
-print('Cost per diner:', split_check(bill, people, new_tax_percentage, new_tip_percentage))
+my_pdf = r"C:\Users\Test\FileName.pdf"
+doc = fitz.open(my_pdf) 
+def pdftype(doc):
+    i=0
+    for page in doc:
+        if len(page.getText())>0: #for scanned page it will be 0
+            i+=1
+    if i>0:
+        print('full/partial text PDF file')
+    else:
+        print('only scanned images in PDF file')
+pdftype(doc)

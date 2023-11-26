@@ -1,10 +1,5 @@
-from pydantic import BaseModel
-from typing import Optional
-
-class Blog(BaseModel):
-    title: str
-    body: str
-
-class UpdateBlog(BaseModel):
-    title: Optional[str]
-    body: Optional[str]
+number_exit = 0
+# This function generates a list of numbers under certain rules
+def num_var_list():
+    global number_list, number_exit, number_target
+    number_list = []

@@ -1,21 +1,13 @@
-def count_letters(text):
-    result = {}
-    text = text.lower().replace(" ","")
-    text = text.replace("", " ").split()
-    dummy = []
-    dummy1 = ""
+ex_dict = {"milk":5, "eggs":2, "flour": 3}
 
-    for x in text: # remove non-letter
-        if x.isalpha():
-            dummy.append(x)
-            dummy1 = "".join(dummy)
+def sum_rec(it):
+    if isinstance(it, dict):
+        it = iter(it.values())
+    try:
+        v = next(it)
+    except StopIteration:
+        return 0
+    return v + sum_rec(it)
 
-    for letter in dummy1:
-        if letter not in result:
-            result[letter] = 0
-        result[letter] += 1
-    return result
-
-print(count_letters("AaBbCc"))
-print(count_letters("Math is fun! 2+2=4"))
-print(count_letters("This is a sentence."))
+sum_rec(ex_dict)
+# 10

@@ -1,0 +1,6 @@
+...
+class DHT22Custom:
+    def __init__(self):
+        print("**** BUILDING by {0}!".format(threading.currentThread().getName()))
+        self.dht_device = adafruit_dht.DHT22(board.D17)
+...

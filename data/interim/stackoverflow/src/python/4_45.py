@@ -1,11 +1,7 @@
-import re
-def check_web_address(text):
-  pattern = r'^[\w\-+.]+\.[a-zA-z]+$'
-  result = re.search(pattern, text)
-  return result != None
-
-print(check_web_address("gmail.com")) # True  
-print(check_web_address("www@google")) # False.  
-print(check_web_address("www.Coursera.org")) # True
-print(check_web_address("web-address.com/homepage")) # False.    
-print(check_web_address("My_Favorite-Blog.US")) # True
+#Use str method instead of greeting() method
+def __str__(self):
+    # Should return "hi, my name is " followed by the name of the Person.
+    return "hi, my name is {}".format(self.name) 
+some_person = Person("xyz")  
+# Call the __str__ method
+print(some_person)

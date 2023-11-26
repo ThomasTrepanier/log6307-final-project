@@ -1,22 +1,8 @@
-class TransactionType(Enum):
+import numpy as np
 
-    IN = "IN"
-    OUT = "OUT"
+def diamond(n):
+    a, b = np.eye(n, dtype=int), np.eye(n, dtype=int)[:,::-1]
 
-    @classmethod
-    def choices(cls):
-        print(tuple((i.name, i.value) for i in cls))
-        return tuple((i.name, i.value) for i in cls)
+    c, d = np.hstack((b,a[:,1:])), np.hstack((a,b[:,1:]))
 
-class TransactionStatus(Enum):
-
-    INITIATED = "INITIATED"
-    PENDING = "PENDING"
-    COMPLETED = "COMPLETED"
-    FAILED = "FAILED"
-    ERROR = "ERROR"
-
-    @classmethod
-    def choices(cls):
-        print(tuple((i.value, i.name) for i in cls))
-        return tuple((i.value, i.name) for i in cls)
+    return np.vstack((c, d[1:,:]))

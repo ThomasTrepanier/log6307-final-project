@@ -1,27 +1,29 @@
-from docx.oxml import OxmlElement, ns
+T = int(input())
+for test in range(T):
+    house = []
+    input1 = input()
+    input1 = input1.split()
+    N = int(input1[0])
+    B = int(input1[1])
+    input2 = input()
+    input2 = input2.split()
+    for x in input2:
+        price = int(x)
+        dictionary = {"house":x,"price":price}
+        house.append(dictionary)
+    
+    def myFunc(e):
+        return e['price']
 
-def create_element(name):
-    return OxmlElement(name)
+    house.sort(key=myFunc)
 
-def create_attribute(element, name, value):
-    element.set(ns.qn(name), value)
+    spent = 0
+    purchased = 0
 
+    for x in house:
+        variable1 = x.get('price')
+        spent += variable1
+        if spent <= B:
+            purchased += 1
 
-def add_page_number(run):
-    fldChar1 = create_element('w:fldChar')
-    create_attribute(fldChar1, 'w:fldCharType', 'begin')
-
-    instrText = create_element('w:instrText')
-    create_attribute(instrText, 'xml:space', 'preserve')
-    instrText.text = "PAGE"
-
-    fldChar2 = create_element('w:fldChar')
-    create_attribute(fldChar2, 'w:fldCharType', 'end')
-
-    run._r.append(fldChar1)
-    run._r.append(instrText)
-    run._r.append(fldChar2)
-
-doc = Document()
-add_page_number(doc.sections[0].footer.paragraphs[0].add_run())
-doc.save("your_doc.docx")
+    print(f"Case #{test+1}: {purchased}")

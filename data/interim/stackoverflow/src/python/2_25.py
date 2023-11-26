@@ -1,30 +1,13 @@
-from typing import Any
+def sumOfUnique(nums):
+    counts = {}
+    for i in nums:
+        if i in counts.keys():
+            counts[i] += 1
+        else:
+            counts[i] = 1
 
-from pydantic import BaseModel, Field
-from pymapme.models.mapping import MappingModel
+    uniques = [k for k, v in counts.items() if v == 1]
+    print(uniques)
+    return sum(uniques)  # return the sum of the list elements
 
-
-class Person(BaseModel):
-    name: str
-    surname: str
-
-
-class Profile(BaseModel):
-    nickname: str
-    person: Person
-
-
-class User(MappingModel):
-    nickname: str = Field(source='nickname')
-    first_name: str = Field(source='person.name')
-    surname: str = Field(source='person.surname')
-    full_name: str = Field(source_func='_get_full_name')
-
-    @staticmethod
-    def _get_full_name(model: Profile, default: Any):
-        return model.person.name + ' ' + model.person.surname
-
-
-profile = Profile(nickname='baobab', person=Person(name='John', surname='Smith'))
-user = User.build_from_model(profile)
-print(user.dict())  # {'nickname': 'baobab', 'first_name': 'John', 'surname': 'Smith', 'full_name': 'John Smith'}
+print(sumOfUnique([1, 2, 1, 3, 4, 1]))

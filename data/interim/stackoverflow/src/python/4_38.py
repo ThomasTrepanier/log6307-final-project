@@ -1,23 +1,11 @@
-from enum import Enum, EnumMeta
-from typing import Any
+class Person:
+    def __init__(self, name):
+        self.name = name
+    def greeting(self):
+        # Should return "hi, my name is " followed by the name of the Person.
+        return name
 
-class EnumeratorMeta(EnumMeta):
-
-    def __contains__(cls, member: Any):
-        if type(member) == cls:
-            return EnumMeta.__contains__(cls, member)
-        else:
-            try:
-                cls(member)
-            except ValueError:
-                return False
-            return True
-
-
-class Enumerator(Enum, metaclass=EnumeratorMeta):
-    pass
-
-
-class ENTITY_TYPES(Enumerator):
-    SERVICE: str = 'service'
-    CONFIGMAP: str = 'configmap'
+# Create a new instance with a name of your choice
+some_person =  Person("XYZ")
+# Call the greeting method
+print(f"hi, my name is {some_person.name}")

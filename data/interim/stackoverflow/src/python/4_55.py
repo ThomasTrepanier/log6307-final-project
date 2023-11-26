@@ -1,7 +1,22 @@
-def upload_file(remote_path,local_path):
-    try:
-        blobService = BlockBlobService(account_name=SETTINGS.AZURE_ACCOUNT_NAME, account_key=SETTINGS.AZURE_ACCOUNT_KEY)
-        blobService.create_blob_from_path('data',remote_path,local_path)
-    except Exception as e:
-        logger.error(f'Unable to save azure blob data. {str(e)}')
-        raise Exception(f'Unable to save azure blob data. {str(e)}')
+from multiprocessing import set_start_method
+from multiprocessing import Process, Manager
+try:
+    set_start_method('spawn')
+except RuntimeError:
+    pass
+@app.get("/article_classify")
+def classification(text:str):
+    """function to classify article using a deep learning model.
+    Returns:
+        [type]: [description]
+    """
+    manager = Manager()
+
+    return_result = manager.dict()
+    # as the inference is failing 
+    p = Process(target = inference,args=(text,return_result,))
+    p.start()
+    p.join()
+    # print(return_result)
+    result = return_result['all_tags']
+    return result

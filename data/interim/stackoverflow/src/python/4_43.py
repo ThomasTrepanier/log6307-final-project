@@ -1,11 +1,12 @@
-import re
-def check_web_address(text):
-  pattern = r'^[A-Za-z0-9-_+.]*[.][A-Za-z]*$'
-  result = re.search(pattern, text)
-  return result != None
+from dataclasses import dataclass, InitVar
 
-print(check_web_address("gmail.com")) # True
-print(check_web_address("www@google")) # False
-print(check_web_address("www.Coursera.org")) # True
-print(check_web_address("web-address.com/homepage")) # False
-print(check_web_address("My_Favorite-Blog.US")) # True
+
+@dataclass(frozen=True)
+class A:
+    a: str = ''
+    b: int = 0
+    config: InitVar[dict] = None
+
+    def __post_init__(self, config: dict):
+        if config:
+            self.__init__(**config)

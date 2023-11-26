@@ -1,11 +1,7 @@
-class Person:
-    def __init__(self, name):
-        self.name = name
-    def greeting(self):
-        # Should return "hi, my name is " followed by the name of the Person.
-        return name
-
-# Create a new instance with a name of your choice
-some_person =  Person("XYZ")
-# Call the greeting method
-print(f"hi, my name is {some_person.name}")
+from functools import reduce
+from operator import and_, or_, contains
+def containsAll(str1, str2):
+    return reduce(and_, map(contains, len(str2)*[str1], str2))
+str1 = input("Enter the first string:")
+str2 = input("Enter the second string to check if all characters exist:")
+containsAll(str1,str2)

@@ -1,11 +1,12 @@
-import re
-def check_web_address(text):
-  pattern = r'\.[comeduorginfoUSnetintmilgov]*$'
-  result = re.search(pattern, text)
-  return result != None
+from django.test import TestCase
 
-print(check_web_address('gmail.com')) # True
-print(check_web_address('www.google')) # False
-print(check_web_address('www.Coursera.org')) # True
-print(check_web_address('web-address.com/homepage')) # False
-print(check_web_address('My_Favorite-Blog.US')) # True
+class views(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        import django
+        django.setup()
+
+    def test_something(self,):
+        from user.model import something
+        ...

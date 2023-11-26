@@ -1,12 +1,20 @@
-import pandas as pd
-import numpy as np
-from numba import jit
+from flask import Flask, flash, request, redirect, url_for, session
+import json
 
-df = pd.DataFrame({'a': [1, 2, 3, 4, 5, 6], 'b': [1, 3, 5, 7, 9, 11]})
+app = Flask(__name__)
 
-@jit
-def f(w):
-    # we have access to both columns of the dataframe here
-    return np.max(w), np.min(w)
+@app.route("/test", methods=['GET','POST'])
+def check():
+    arr = []
+    arr.append(request.form['a'])
+    arr.append(request.form['b'])
+    res = {'Status': True}
 
-df.rolling(3, method='table').apply(f, raw=True, engine='numba')
+    @flask.after_this_request
+    def add_close_action(response):
+        @response.call_on_close
+        def process_after_request():
+            df = pd.DataFrame({'x': arr})
+            df.to_csv("docs/xyz.csv", index=False)
+        return response
+    return json.dumps(res)

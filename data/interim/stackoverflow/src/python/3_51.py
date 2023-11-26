@@ -1,35 +1,16 @@
-import shutil
-from pathlib import Path
-from tempfile import NamedTemporaryFile
-from typing import Callable
+def digit(n):
+   even = 0
+   odd = 0
+   while (n != 0):
+       r = n % 10
+       if r % 2 == 0:
+          even = even + r
+       else:
+          odd = odd + r
+       n //= 10
 
-from fastapi import UploadFile
-
-
-def save_upload_file(upload_file: UploadFile, destination: Path) -> None:
-    try:
-        with destination.open("wb") as buffer:
-            shutil.copyfileobj(upload_file.file, buffer)
-    finally:
-        upload_file.file.close()
+   return even - odd
 
 
-def save_upload_file_tmp(upload_file: UploadFile) -> Path:
-    try:
-        suffix = Path(upload_file.filename).suffix
-        with NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-            shutil.copyfileobj(upload_file.file, tmp)
-            tmp_path = Path(tmp.name)
-    finally:
-        upload_file.file.close()
-    return tmp_path
-
-
-def handle_upload_file(
-    upload_file: UploadFile, handler: Callable[[Path], None]
-) -> None:
-    tmp_path = save_upload_file_tmp(upload_file)
-    try:
-        handler(tmp_path)  # Do something with the saved temp file
-    finally:
-        tmp_path.unlink()  # Delete the temp file
+n = 412
+print(digit(int(n)))

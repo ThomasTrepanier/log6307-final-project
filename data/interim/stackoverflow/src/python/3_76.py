@@ -1,28 +1,13 @@
-d={'a':{1:1,2:2},"b":0,'c':"{}"}
-print(d)
-s=str(d)
+def make_dataset(dir):
+    import os
+    images = []
+    d = os.path.expanduser(dir)
 
-dictionary_stack,dictionary_depth=0,0
-def push():
-    global dictionary_depth
-    global dictionary_stack
-    dictionary_stack+=1
-    dictionary_depth=max(dictionary_depth,dictionary_stack)
+    if not os.path.exists(dir):
+        print('path does not exist')
 
-def pop():
-    global dictionary_stack
-    dictionary_stack-=1
-
-string_safety=False
-for c in s:
-    if c =="'":
-        string_safety=not(string_safety)
-    
-    if not(string_safety) and c =='{':
-        push()
-    
-    if not(string_safety) and c =='}':
-        pop()
-
-
-print(dictionary_depth)
+    for root, _, fnames in sorted(os.walk(d)):
+        for fname in sorted(fnames):
+            path = os.path.join(root, fname)
+            images.append(path)
+    return images    

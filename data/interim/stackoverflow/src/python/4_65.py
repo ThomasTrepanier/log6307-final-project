@@ -1,10 +1,14 @@
-import datetime
+from subprocess import PIPE, Popen
 
-def week_to_dates():
-    date = datetime.date.today()
-    week = date.strftime("%V")
 
-    candidates = [date - datetime.timedelta(days=k) for k in range(14, 0, -1)] + \
-                 [date] + \
-                 [date + datetime.timedelta(days=k) for k in range(1, 15)]
-    return [candidate.strftime('%Y-%m-%d') for candidate in candidates if candidate.strftime("%V") == week]
+def cmdline(command):
+    process = Popen(
+        args=command,
+        stdout=PIPE,
+        shell=True
+    )
+    return process.communicate()[0]
+
+
+token = cmdline("gcloud auth application-default print-access-token")
+print("Token:"+token)

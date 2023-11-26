@@ -1,18 +1,12 @@
-import asyncio
-from asyncio import create_subprocess_shell
-from asyncio.subprocess import PIPE, STDOUT
-import sys
+import pandas as pd
+import numpy as np
+from numba import jit
 
-async def main():
-    # create a subprocess in asyncio and connect its stdout to the stdin of another subprocess
+df = pd.DataFrame({'a': [1, 2, 3, 4, 5, 6], 'b': [1, 3, 5, 7, 9, 11]})
 
+@jit
+def f(w):
+    # we have access to both columns of the dataframe here
+    return np.max(w), np.min(w)
 
-    p1 = await create_subprocess_shell("python myfile.py",
-                                       stdout=PIPE, stderr=STDOUT)
-    while True:
-        if p1.stdout.at_eof():
-            break
-        stdout = (await p1.stdout.readline()).decode()
-        if stdout:
-            print(f'[stdout] {stdout}')
-    await p1.wait()
+df.rolling(3, method='table').apply(f, raw=True, engine='numba')

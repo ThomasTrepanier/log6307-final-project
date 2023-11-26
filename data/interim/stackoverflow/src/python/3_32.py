@@ -1,20 +1,11 @@
-upload_parser = api.parser()
-upload_parser.add_argument('file', location='files',
-                           type=FileStorage, required=True)
+def procedures(txt1, txt2):
+    seq1 = list(txt1.lower())
+    seq2 = list(txt2.lower())
 
-hostauth_create_fields = api.model(
-    'HostAuthCreate', {
-        'name': fields.String(description="The name of the instance", required=True),
-        'username': fields.String(description="Username to connect", required=True),
-        'password': fields.String(description="Password to connect", required=False)
-    }
-)
+    seq1.sort()
+    seq2.sort()
 
-@api.route('/api/hostauth')
-class HostAuthView(Resource):
-    @api.expect(upload_parser, hostauth_create_fields)
-    def post(self):
-        args = upload_parser.parse_args()
-        args.get('file')
-        api.payload.get('name') # This line will cause a error
-        return {'name': args.get('name')}, 201
+    if seq1 == seq2:
+        return True
+    else:
+        return False

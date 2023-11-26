@@ -1,11 +1,10 @@
-import uvicorn
+import itertools
 
-app = FastAPI()
+def combination(l):
+    result = []
+    for L in range(0, len(l)+1):
+        for subset in itertools.combinations(l, L):
+            result.append(list(subset))
+    return result
 
-@app.get("/")
-def index():
-    return {"index": "root"}
-
-if __name__ == '__main__':
-
-    uvicorn.run(f"{Path(__file__).stem}:app", host="127.0.0.1", port=8888, reload=True)
+print(combination([1, 2, 3]))

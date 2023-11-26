@@ -1,11 +1,6 @@
-import random
-import torchvision.transforms as T
+#views.py
+@csrf_exempt # API doesn't know how to send you csrf token
+def check_status(request):
+    if request.method == 'POST':
+        print(request.POST)# examine the data returned from the API
 
-class RandomChoice(torch.nn.Module):
-    def __init__(self, transforms):
-       super().__init__()
-       self.transforms = transforms
-
-    def __call__(self, imgs):
-        t = random.choice(self.transforms)
-        return [t(img) for img in imgs]

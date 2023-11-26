@@ -1,0 +1,6 @@
+if os.name == 'nt':
+    class Feature:
+        ...
+else:
+    class Feature:
+        ...

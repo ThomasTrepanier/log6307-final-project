@@ -1,15 +1,9 @@
-def multiencoder_factory(*encoders):
-    class MultipleJsonEncoders(json.JSONEncoder):
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            self.encoders = [encoder(*args, **kwargs) for encoder in encoders]
-            
-        def default(self, o):
-            for encoder in self.encoders:
-                try:
-                    return encoder.default(o)
-                except TypeError:
-                    pass
-            return super().default(o)
+list1 = ['list4','this1', 'he5re', 'my3','is2']
 
-    return MultipleJsonEncoders
+def mySort(string):
+    if any(char.isdigit() for char in string): #Check if theres a number in the string
+        return [float(char) for char in string if char.isdigit()][0] #Return list of numbers, and return the first one (we are expecting only one number in the string)
+
+list1.sort(key = mySort)
+
+print(list1)

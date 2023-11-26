@@ -1,14 +1,18 @@
-# run as
-# pytest test_plotting.py
+def scanner2(path, input):
+    with open(path) as file:
+         lines = file.readlines()
+         for index, line in enumerate(lines):
+             if line[1].isdigit() == True and line[22: -13].strip(" ") == input:
+                 print(line)
+                 lin = index+1
+                 try:
+                     while lines[lin][1].isdigit() is False:
+                         print(lines[lin])
+                         lin +=1
+                 except IndexError:
+                     break
 
-from matplotlib import pyplot as plt
 
-
-def plot_fn():
-    plt.plot([1,2,3])
-    plt.show()
-    assert False # to check that the code gets here
-
-def test_plot_fn():
-    with plt.ion():
-        plot_fn()
+print("="*40)
+print(f"*****History of {inp}*****")        
+scanner2(path2, inp)

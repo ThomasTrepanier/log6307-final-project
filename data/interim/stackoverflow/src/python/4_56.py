@@ -1,27 +1,44 @@
-# python3
-import sys
+import google
+import os
+import requests
 
-def compute_min_refills(distance, tank, stops):
-    capacity_tank = tank
-    refill = 0
-
-    if capacity_tank >= distance:
-        return 0
-    if capacity_tank < stops[0] or (distance-stops[-1]) > capacity_tank:
-        return -1
-
-    for i in range(1, len(stops)):
-        if (stops[i]-stops[i-1]) > capacity_tank:
-            return -1
-        if stops[i] > tank:
-            tank = (stops[i-1] + capacity_tank)
-            refill += 1
-    if distance > tank:
-        refill += 1
-
-    return refill
+GOOGLE_APPLICATION_CREDENTIALS = "GOOGLE_APPLICATION_CREDENTIALS"
+GCS_OAUTH_TOKEN = "GCS_OAUTH_TOKEN"
+SCOPE = "https://www.googleapis.com/auth/cloud-platform"
+URL = "https://www.googleapis.com/oauth2/v1/tokeninfo"
+PAYLOAD = "access_token={}"
+HEADERS = {"content-type": "application/x-www-form-urlencoded"}
+OK = "OK"
 
 
-    if __name__ == '__main__':
-        d, m, _, *stops = map(int, sys.stdin.read().split())
-        print(compute_min_refills(d, m, stops))
+def get_gcs_token():
+    """
+    Returns gcs access token.
+    Ideally, this function generates a new token, requries that GOOGLE_APPLICATION_CREDENTIALS be set in the environment
+    (os.environ).
+    Alternatively, environment variable GCS_OAUTH_TOKEN could be set if a token already exists
+    """
+    if GOOGLE_APPLICATION_CREDENTIALS in os.environ:
+        # getting the credentials and project details for gcp project
+        credentials, your_project_id = google.auth.default(scopes=[SCOPE])
+
+        # getting request object
+        auth_req = google.auth.transport.requests.Request()
+        credentials.refresh(auth_req)  # refresh token
+        token = credentials.token
+    elif GCS_OAUTH_TOKEN in os.environ:
+        token = os.environ[GCS_OAUTH_TOKEN]
+    else:
+        raise ValueError(
+            f"""Could not generate gcs token because {GOOGLE_APPLICATION_CREDENTIALS} is not set in the environment.
+Alternatively, environment variable {GCS_OAUTH_TOKEN} could be set if a token already exists, but it was not"""
+        )
+
+    r = requests.post(URL, data=PAYLOAD.format(token), headers=HEADERS)
+    if not r.reason == OK:
+        raise ValueError(
+            f"Could not verify token {token}\n\nResponse from server:\n{r.text}"
+        )
+    if not r.json()["expires_in"] > 0:
+        raise ValueError(f"token {token} expired")
+    return token

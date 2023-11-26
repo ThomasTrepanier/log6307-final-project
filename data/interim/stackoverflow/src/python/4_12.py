@@ -1,12 +1,13 @@
-def idataclass(**kwargs):     
-    def deco(cls):
-        cls = dataclass(cls, **kwargs)
-        cls.__iter__  = lambda s: (getattr(s, field.name) for field  in fields(s))
-        return cls
-    return deco
+import dash
 
- 
-@idataclass()
-class XY:
-    x: float | int
-    y: float | int
+from callback_manager import CallbackManager
+
+callback_manager = CallbackManager()
+
+
+@callback_manager.callback(
+    dash.dependencies.Output('label', 'children'),
+    [dash.dependencies.Input('call_btn', 'n_clicks')])
+def update_label(n_clicks):
+    if n_clicks > 0:
+        return "Callback called!"

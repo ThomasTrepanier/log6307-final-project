@@ -1,13 +1,16 @@
-def clean_class_dict(class_dict):
-    return_dict = dict(class_dict)
-    for key in list(return_dict.keys()):
-        if key[0] == "_":
-            del return_dict[key]
-    return return_dict
+import asyncio
 
-def item_in_enum_titles(item: str, enum: Enum):
-    enum_dict = clean_class_dict(enum.__dict__)
-    if item in enum_dict.keys():
-        return True
-    else:
-        return False
+
+async def delay(n):
+    print(f"sleeping for {n} second(s)")
+    await asyncio.sleep(n)
+    print(f"done sleeping for {n} second(s)")
+
+
+async def main():
+    t1 = asyncio.create_task(delay(1))
+    t2 = asyncio.create_task(delay(2))
+    await t2
+
+
+asyncio.run(main())

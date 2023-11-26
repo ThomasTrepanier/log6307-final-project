@@ -1,17 +1,10 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+def parse_dict(d):
+    new_dict = {}
+    for key,val in d.items():
+        if isinstance(val,list):
+            new_dict.update({f'{key}_{i+1}':v for i,v in enumerate(val)})
+        else:
+            new_dict[key] = val
+    return new_dict
 
-# The Service class is used to start an instance of the Chrome WebDriver
-# The no-argument constructor means it will look for the WebDriver executable in the system's PATH
-service = Service()
-
-# WebDriver.ChromeOptions() is used to set the preferences for the Chrome browser
-options = webdriver.ChromeOptions()
-
-# Here, we start an instance of the Chrome WebDriver with the defined options and service
-driver = webdriver.Chrome(service=service, options=options)
-
-# Your code for interacting with web pages goes here
-
-# In the end, always close or quit the driver to ensure all system resources are freed up
-driver.quit()
+result = [parse_dict(d) for d in p]

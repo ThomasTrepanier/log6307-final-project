@@ -1,24 +1,20 @@
-import json
-import enum
-import datetime
+inp = input("please, Enter your input that you want to search for: ")
 
-class JsonDateEncoder(json.JSONEncoder):
-    """JSON serializer for objects not serializable by default json code"""
-    def default(self, o):
-        if isinstance(o, (datetime.datetime, datetime.date)):
-            return o.isoformat()
-        return super().default(o)
 
-class JsonEnumEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, enum.Enum):
-            return o.name
-        return super().default(o)
+def scanner (path, input):
+    with open(path) as file:
+         lines = file.readlines()
+         for index, line in enumerate(lines):
+             if line[0].isdigit() == True and line[20: -13] == input:
+                 print(line)
+                 lin = index+1
+                 try:
+                     while lines[lin][0].isdigit() is False:
+                         print(lines[lin])
+                         lin +=1
+                 except IndexError:
+                     break
 
-class Enumm(enum.Enum):
-    X = enum.auto()
-
-obj = {'time': datetime.datetime.now(), 'enum': Enumm.X}
-encoder = multiencoder_factory(JsonDateEncoder, JsonEnumEncoder)
-
-json.dumps(obj, cls=encoder)
+print("="*40)
+print(f"*****History of {inp}*****")        
+scanner(path, inp)

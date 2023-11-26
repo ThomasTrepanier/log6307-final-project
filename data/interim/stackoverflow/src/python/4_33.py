@@ -1,15 +1,14 @@
-from PyQt6 import QtCore, QtGui, QtWidgets
-from test_ui import Ui_Window
-import resources
+import asyncio
 
-class Window(QtWidgets.QWidget, Ui_Window):
-    def __init__(self):
-        super().__init__()
-        self.setupUi(self)
 
-if __name__ == '__main__':
+async def delay(n):
+    print(f"sleeping for {n} second(s)")
+    await asyncio.sleep(n)
+    print(f"done sleeping for {n} second(s)")
 
-    app = QtWidgets.QApplication(['Test'])
-    window = Window()
-    window.show()
-    app.exec()
+
+loop = asyncio.get_event_loop()
+t1 = loop.create_task(delay(1))
+t2 = loop.create_task(delay(2))
+loop.run_until_complete(t1)
+loop.close()

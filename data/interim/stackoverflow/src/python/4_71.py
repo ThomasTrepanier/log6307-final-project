@@ -1,9 +1,15 @@
-def area(length, width):
-    return length * width
+def max_num(num1, num2, num3):
+    if num1 > num2:
+        if num1 > num3:
+            return num1
+        else:
+            return num3
+    else:
+        if num2 > num3:
+            return num2
+        else:
+            return num3
 
-l = 4
-w = 5
-
-print("length =", l, "width =", w, "area =", area(l, w))  # normal way
-print(f"length = {l} width = {w} area = {area(l,w)}")     # Same output as above
-print("length = {l} width = {w} area = {area(l,w)}")      # without f prefixed
+print(max_num(-10, 0, 10)) # returns 10
+print(max_num(-10, 5, -30)) # returns 5
+print(max_num(-5, -10, -10)) # returns -5

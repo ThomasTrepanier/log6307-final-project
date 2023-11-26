@@ -1,11 +1,12 @@
-class human:
-  def __init__(self, choice = False, **kwargs):
-    self.details = [kwargs if choice is False else self._filterr(kwargs)][0]
+def whatistheremainder(v):
+    first, sep, rest = v.partition(' ')
+    return rest
 
-  def _filterr(self, param):
-    filtered = {k:v for k,v in param.items() if v is not None}
-    return filtered
+for s in ['the quick brown fox', 'hi there', 'single', '', 'abc\tefg']:
+    whatistheremainder(s)
 
-jason = human(choice = True ,name = "jason", age = None, height = None, gender = None, programmer = True)
-
-print(jason.details)
+'quick brown fox'
+'there'
+''
+''
+''

@@ -1,5 +1,7 @@
-class Rank(Enum):
-    King = 13
+def plot(col):
+ 
+    fig, ax = plt.subplots()
+    ax.plot(col)
+    plt.show()
 
-print(Rank.King.name) # outputs 'King'
-print(Rank.King.value) # outputs 13
+df.apply(plot)

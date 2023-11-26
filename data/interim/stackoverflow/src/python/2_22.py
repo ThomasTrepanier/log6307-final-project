@@ -1,14 +1,11 @@
-class MtnPayer(BaseModel):
-  partyIdType: str
-  partyId: str
+import math
 
-class MtnPayment(BaseModel):
-  financialTransactionId: str
-  externalId: str
-  amount: str
-  currency: str
-  payer: MtnPayer
-  payerMessage: str
-  payeeNote: str
-  status: str
-  reason: str
+
+def get_powers(power, length):
+    return [int(math.pow(power, x)) for x in range(1, length + 1)]
+
+
+power_input = int(input('power:'))
+length_input = int(input('length:'))
+
+print(get_powers(power_input, length_input))

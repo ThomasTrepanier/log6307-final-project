@@ -1,18 +1,30 @@
-def count_letters(text):
-  result = {}
-  # Go through each letter in the text
-  for letter in text:
-    # Check if the letter needs to be counted or not
-    if letter.isalpha():
-      result[letter.lower()]=result.get(letter.lower(),0)+1
-    # Add or increment the value in the dictionary
-  return result
+def openRedisCon():
+   pool = redis.ConnectionPool(host=REDIS_HOST, port=REDIS_PORT, db=0)
+   r = redis.Redis(connection_pool=pool)
+   return r
 
-print(count_letters("AaBbCc"))
-# Should be {'a': 2, 'b': 2, 'c': 2}
+def storeDFInRedis(alias, df):
+    """Store the dataframe object in Redis
+    """
 
-print(count_letters("Math is fun! 2+2=4"))
-# Should be {'m': 1, 'a': 1, 't': 1, 'h': 1, 'i': 1, 's': 1, 'f': 1, 'u': 1, 'n': 1}
+    buffer = io.BytesIO()
+    df.to_parquet(buffer, compression='gzip')
+    buffer.seek(0) # re-set the pointer to the beginning after reading
+    r = openRedisCon()
+    res = r.set(alias,buffer.read())
 
-print(count_letters("This is a sentence."))
-# Should be {'t': 2, 'h': 1, 'i': 2, 's': 3, 'a': 1, 'e': 3, 'n': 2, 'c': 1}
+def loadDFFromRedis(alias, useStale: bool = False):
+    """Load the named key from Redis into a DataFrame and return the DF object
+    """
+
+    r = openRedisCon()
+
+    try:
+        buffer = io.BytesIO(r.get(alias))
+        buffer.seek(0)
+        df = pd.read_parquet(buffer)
+        return df
+    except:
+        return None
+
+

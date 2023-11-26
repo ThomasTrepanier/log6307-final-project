@@ -1,29 +1,21 @@
 import pandas as pd
-import pyarrow as pa
-import redis
+import numpy as np
+raw_data = {'age1': [23,45,210],'age2': [10,20,150],'name': ['a','b','c']}
+df = pd.DataFrame(raw_data, columns = ['age1','age2','name'])
+
+raw_data = {'age1': [80,90,110],'age2': [70,120,90],'name': ['a','b','c']}
+df2 = pd.DataFrame(raw_data, columns = ['age1','age2','name'])
+
+col_list=['age1','age2']
+df_list=[df,df2]
+
+def dead(df_list, col_list):
+    for df in df_list:
+        for col in col_list:
+            df[col] = np.where(df[col] >= 100, "dead", df[col])
+    return df_list
 
 
-r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, db=0)
+df
 
-
-def save_df_to_redis(r, redis_key, df):
-    buffer = pa.serialize_pandas(df)
-    r.set(redis_key, buffer.to_pybytes())
-
-
-def load_df_from_redis(r, redis_key):
-    buffer = r.get(redis_key)
-    df = pa.deserialize_pandas(buffer)
-    return df
-
-
-
-data = {
-    "Name": ["John", "Anna", "Peter"],
-    "Age": [28, 24, 33],
-}
-df = pd.DataFrame(data)
-
-save_df_to_redis(r, "key", df)
-df_redis = load_df_from_redis(r, "key")
-print(df_redis)
+dead([df], col_list)

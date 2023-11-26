@@ -1,8 +1,9 @@
-@app.post("/")
-async def post_endpoint(in_file: UploadFile=File(...)):
-    # ...
-    async with aiofiles.open(out_file_path, 'wb') as out_file:
-        content = await in_file.read()  # async read
-        await out_file.write(content)  # async write
-
-    return {"Result": "OK"}
+def name_counts(name_list):
+    result_dict = {}
+    for name in name_list:
+        names = name.split(" ")
+        if names[0] in result_dict:
+            result_dict[names[0]] += 1
+        else:
+            result_dict[names[0]] = 1
+    return result_dict 

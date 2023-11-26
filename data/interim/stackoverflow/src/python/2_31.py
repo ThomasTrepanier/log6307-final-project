@@ -1,7 +1,8 @@
-@dataclasses.dataclass(frozen=True)
-class SimpleClass:
-    a: int
-
-    @temp_unfreeze_for_postinit
-    def __post_init__(self, adder):
-        self.b = self.a + adder
+def minSubStr(str1, str2):
+    if str2 in str1: 
+        print(True)
+    else:
+        print(False)
+str1 = input("Enter the first string: ")
+str2 = input("Enter the second string to check if the characters exist in the first string: ")
+minSubStr(str1, str2)

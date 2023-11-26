@@ -1,7 +1,7 @@
-import yfinance as yf
-
-def current_price(instrument):
-    data = yf.Ticker(instrument).history(period="1d", interval="1m")
-    return data["Close"].iloc[-1]
-
-print(current_price("TSLA"))
+def foo(a, b):
+  return a + b
+def __init__(self):
+    self.my_list = [
+        'a',
+        'b',
+    ]

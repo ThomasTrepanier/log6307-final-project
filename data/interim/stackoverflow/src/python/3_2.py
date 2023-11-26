@@ -1,14 +1,12 @@
-from dataclasses import dataclass, asdict
+def whatistheremainder(v):
+    first, sep, rest = v.partition(' ')
+    return rest if sep else first
 
-@dataclass
-class Human:
-    name: str
-    age: int = None
-    height: float = None
-    gender: str = None
-    programmer: bool = False
+for s in ['the quick brown fox', 'hi there', 'single', '', 'abc\tefg']:
+    whatistheremainder(s)
 
-jason = Human(name="jason", programmer=True)
-
-jason_details = asdict(jason)
-print(jason_details)
+'quick brown fox'
+'there'
+'single'
+''
+'abc\tefg'

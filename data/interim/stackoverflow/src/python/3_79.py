@@ -1,25 +1,26 @@
-d_level1 = {"a":1,"b":2,"c":3}
-d_level2 = {"group_1":{"a":1}, "group_2":{"b":2,"c":3}}
-d_level3 = {"collection_1":d_level2}
+def ascending(l):
+    if len(l) <= 1:
+        return(True)
+    else:
+        return(l[0] < l[1] and ascending(l[1:]))
 
-def flatten(d_in, base=()):
-    for k in d_in:
-        if type(d_in[k]) == dict:
-            flatten(d_in[k], base+(k,))
-        else:
-            print(base + (k, d_in[k]))
+def descending(l):
+    if len(l) <= 1:
+        return(True)
+    else:
+        return(l[0] > l[1] and descending(l[1:]))
 
-flatten(d_level1)
-# ('a', 1)
-# ('b', 2)
-# ('c', 3)
+def hill(l):
+    for i in range(1,len(l)-1):
+        if ascending(l[:i+1]) and descending(l[i:]):
+            return(True)
+    return(False)
 
-flatten(d_level2)
-#('group_1', 'a', 1)
-#('group_2', 'b', 2)
-#('group_2', 'c', 3)
+def valley(l):
+    for i in range(1,len(l)-1):
+        if descending(l[:i+1]) and ascending(l[i:]):
+            return(True)
+    return(False)
 
-flatten(d_level3)
-# ('collection_1', 'group_1', 'a', 1)
-# ('collection_1', 'group_2', 'b', 2)
-# ('collection_1', 'group_2', 'c', 3)
+def hillvalley(l):
+    return(hill(l) or valley(l))

@@ -1,36 +1,19 @@
-import imaplib
-import msal
-import pprint
+import asyncio
 
-conf = {
-    "authority": "https://login.microsoftonline.com/XXXXyourtenantIDXXXXX",
-    "client_id": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXXX", #AppID
-    "scope": ['https://outlook.office365.com/.default'],
-    "secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", #Key-Value
-    "secret-id": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", #Key-ID
-}
-    
-def generate_auth_string(user, token):
-    return f"user={user}\x01auth=Bearer {token}\x01\x01"    
 
-if __name__ == "__main__":
-    app = msal.ConfidentialClientApplication(conf['client_id'], authority=conf['authority'],
-                                             client_credential=conf['secret'])
+async def delay(n):
+    print(f"sleeping for {n} second(s)")
+    await asyncio.sleep(n)
+    print(f"done sleeping for {n} second(s)")
 
-    result = app.acquire_token_silent(conf['scope'], account=None)
 
-    if not result:
-        print("No suitable token in cache.  Get new one.")
-        result = app.acquire_token_for_client(scopes=conf['scope'])
+loop = asyncio.get_event_loop()
+t1 = loop.create_task(delay(1))
+t2 = loop.create_task(delay(2))
+loop.run_until_complete(t1)
 
-    if "access_token" in result:
-        print(result['token_type'])
-        pprint.pprint(result)
-    else:
-        print(result.get("error"))
-        print(result.get("error_description"))
-        print(result.get("correlation_id"))
-        
-    imap = imaplib.IMAP4('outlook.office365.com')
-    imap.starttls()
-    imap.authenticate("XOAUTH2", lambda x: generate_auth_string("target_mailbox@example.com", result['access_token']).encode("utf-8"))
+pending = asyncio.all_tasks(loop=loop)
+group = asyncio.gather(*pending)
+loop.run_until_complete(group)
+
+loop.close()
