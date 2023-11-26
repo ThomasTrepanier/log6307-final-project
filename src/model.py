@@ -55,6 +55,8 @@ def get_file_name(path: str):
 
     return extracted_substring
 
+def string_in_english(string: str) -> bool:
+    return string.isascii()
 
 def string_not_in_english(string: str) -> bool:
     return not string.isascii()

@@ -1,0 +1,2 @@
+filename: 2234_48.py, smelly_lines: 9, metric: 15
+filename: 581_29.py, smelly_lines: 2, metric: 13

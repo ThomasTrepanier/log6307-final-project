@@ -1,1 +1,0 @@
-class HybridNotification(SMSNotification, EmailNotification):

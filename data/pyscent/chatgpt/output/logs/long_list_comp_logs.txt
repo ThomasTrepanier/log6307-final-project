@@ -1,0 +1,16 @@
+filename: 112207.py lineno: 23 metric: 88
+filename: 114209.py lineno: 15 metric: 88
+filename: 114209.py lineno: 16 metric: 96
+filename: 146240.py lineno: 62 metric: 136
+filename: 252341.py lineno: 50 metric: 126
+filename: 271359.py lineno: 8 metric: 77
+filename: 273360.py lineno: 9 metric: 77
+filename: 325410.py lineno: 17 metric: 78
+filename: 327412.py lineno: 5 metric: 78
+filename: 538609.py lineno: 43 metric: 74
+filename: 541611.py lineno: 42 metric: 74
+filename: 542612.py lineno: 11 metric: 74
+filename: 543613.py lineno: 25 metric: 74
+filename: 559629.py lineno: 29 metric: 105
+filename: 559629.py lineno: 31 metric: 103
+filename: 559629.py lineno: 33 metric: 105

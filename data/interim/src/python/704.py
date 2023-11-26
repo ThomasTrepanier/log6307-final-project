@@ -1,3 +1,0 @@
-def validate_location(request):
-    ...
-    return is_valid, error_message

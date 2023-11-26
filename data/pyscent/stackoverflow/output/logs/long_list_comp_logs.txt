@@ -1,0 +1,4 @@
+filename: 2354_65.py lineno: 10 metric: 101
+filename: 2534_9.py lineno: 11 metric: 156
+filename: 320_42.py lineno: 12 metric: 86
+filename: 892_16.py lineno: 76 metric: 90

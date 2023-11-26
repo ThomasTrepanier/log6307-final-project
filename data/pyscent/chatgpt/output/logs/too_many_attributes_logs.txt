@@ -1,0 +1,11 @@
+filename: 61194.py, smelly_lines: 1, metric: 10
+filename: 441519.py, smelly_lines: 1, metric: 9
+filename: 557627.py, smelly_lines: 5, metric: 9
+filename: 558628.py, smelly_lines: 5, metric: 9
+filename: 559629.py, smelly_lines: 5, metric: 9
+filename: 561630.py, smelly_lines: 5, metric: 9
+filename: 562631.py, smelly_lines: 5, metric: 9
+filename: 563632.py, smelly_lines: 5, metric: 9
+filename: 61194.py, smelly_lines: 41, metric: 9
+filename: 369451.py, smelly_lines: 10, metric: 8
+filename: 556626.py, smelly_lines: 5, metric: 8
