@@ -1,1 +1,5 @@
-filename: 2464_76.py, smelly_lines: 1, metric: 51
+filename: 135523_76.py, smelly_lines: 16, metric: 111
+filename: 20055_74.py, smelly_lines: 38, metric: 79
+filename: 21867_93.py, smelly_lines: 76, metric: 72
+filename: 69016_56.py, smelly_lines: 1, metric: 52
+filename: 62715_76.py, smelly_lines: 1, metric: 51

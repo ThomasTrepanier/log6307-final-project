@@ -1,0 +1,16 @@
+class Foo:
+    @classmethod # don't have to be but will likely benefit from being classmethods...
+    def _define_something_really_complicated(cls):
+        ...
+    @classmethod
+    def _define_something_else_really_complicated(cls):
+        ...
+    @classmethod
+    def _build(cls):
+        cls._define_something_really_complicated()
+        cls._define_something_else_really_complicated()
+        ...
+    def __init__(self):
+        ...
+
+Foo._build() # where your module is defined.

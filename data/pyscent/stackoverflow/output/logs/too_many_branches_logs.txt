@@ -1,2 +1,14 @@
-filename: 2234_48.py, smelly_lines: 9, metric: 15
-filename: 581_29.py, smelly_lines: 2, metric: 13
+filename: 135523_76.py, smelly_lines: 16, metric: 45
+filename: 21867_93.py, smelly_lines: 76, metric: 30
+filename: 20055_74.py, smelly_lines: 38, metric: 23
+filename: 135723_78.py, smelly_lines: 1, metric: 22
+filename: 23539_49.py, smelly_lines: 13, metric: 22
+filename: 135423_75.py, smelly_lines: 7, metric: 18
+filename: 9231_63.py, smelly_lines: 3, metric: 17
+filename: 60415_48.py, smelly_lines: 9, metric: 15
+filename: 23589_53.py, smelly_lines: 16, metric: 14
+filename: 23699_64.py, smelly_lines: 7, metric: 14
+filename: 108821_55.py, smelly_lines: 4, metric: 13
+filename: 125723_107.py, smelly_lines: 14, metric: 13
+filename: 18513_85.py, smelly_lines: 1, metric: 13
+filename: 8921_29.py, smelly_lines: 2, metric: 13
