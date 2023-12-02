@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  21 NOV 2023 14:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  2 DEC 2023 17:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -254,7 +254,11 @@ Package: import 2020/04/01  v 6.2
 File: l3backend-pdftex.def 2023-10-23 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count284
 \l__pdf_internal_box=\box57
-) (./report-trepanier.aux)
+) (./report-trepanier.aux
+
+LaTeX Warning: Label `sec:threats-to-validity' multiply defined.
+
+)
 \openout1 = `report-trepanier.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
@@ -291,7 +295,155 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) (./sections/01-introduction.tex) (./sections/02-related-work.tex) (./sections/03-methodology.tex) (./sections/04-results.tex) (./sections/05-threats-to-validity.tex) (./sections/06-conclusion.tex)
+)) (./sections/01-introduction.tex) (./sections/02-related-work.tex) (./sections/03-methodology.tex
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+
+ []
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
+(c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
+ (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--15
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
+
+ []
+
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 27.
+(c:/texlive/2023/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Underfull \hbox (badness 5359) in paragraph at lines 27--28
+ \OT1/ptm/m/it/10 1) De-vGPT Dataset: [][] \OT1/ptm/m/n/10 The De-vGPT dataset con-tains
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
+\OT1/ptm/m/n/10 con-ver-sa-tions be-tween de-vel-op-ers and the Chat-GPT
+ []
+
+
+Underfull \hbox (badness 3364) in paragraph at lines 27--28
+\OT1/ptm/m/n/10 bot. Each JSON file con-tains a data struc-ture called
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
+\OT1/pcr/m/n/10 ChatgptSharing\OT1/ptm/m/n/10 , it-self con-tain-ing a list of
+ []
+
+
+Underfull \hbox (badness 8094) in paragraph at lines 27--28
+\OT1/pcr/m/n/10 Conversation\OT1/ptm/m/n/10 . Each \OT1/pcr/m/n/10 Conversation \OT1/ptm/m/n/10 con-tains the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
+ \OT1/ptm/m/it/10 2) Stack-Over-flow Dataset: [][] \OT1/ptm/m/n/10 The an-swers re-trieved
+ []
+
+
+Underfull \hbox (badness 3417) in paragraph at lines 34--35
+\OT1/ptm/m/n/10 from Stack-Over-flow's API con-sisted of HTML bod-ies
+ []
+
+
+Underfull \hbox (badness 5316) in paragraph at lines 34--35
+\OT1/ptm/m/n/10 There-fore, the HTML bod-ies were parsed us-ing the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
+\OT1/ptm/m/n/10 fol-low-ing Regex to ex-tract the code snip-pet it-self:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
+
+ []
+
+[1{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+
+]
+Underfull \hbox (badness 1629) in paragraph at lines 45--46
+[]\OT1/ptm/m/n/10 The code snip-pet must be at least 5 lines long,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+
+ []
+
+
+Underfull \hbox (badness 5908) in paragraph at lines 47--48
+\OT1/ptm/m/n/10 This is be-cause non-unicode char-ac-ters are not
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
+
+ []
+
+) (./sections/04-results.tex) (./sections/05-discussion.tex) (./sections/06-threats-to-validity.tex) (./sections/07-conclusion.tex)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -303,29 +455,29 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[1{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}
-
-
-
-] (./report-trepanier.aux)
+[2] (./report-trepanier.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 4306 strings out of 474397
- 66754 string characters out of 5754184
- 1927036 words of memory out of 5000000
- 26345 multiletter control sequences out of 15000+600000
- 586300 words of font info for 83 fonts, out of 8000000 for 9000
+ 4413 strings out of 474397
+ 68392 string characters out of 5754184
+ 1937036 words of memory out of 5000000
+ 26420 multiletter control sequences out of 15000+600000
+ 596520 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,309b,260s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on report-trepanier.pdf (1 page, 37664 bytes).
+ 57i,8n,65p,725b,260s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on report-trepanier.pdf (2 pages, 85470 bytes).
 PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
- 14 compressed objects within 1 object stream
+ 42 PDF objects out of 1000 (max. 8388607)
+ 25 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
