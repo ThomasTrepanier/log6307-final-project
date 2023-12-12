@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  12 DEC 2023 15:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  12 DEC 2023 15:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -261,11 +261,7 @@ Package: placeins 2005/04/18  v 2.2
 File: l3backend-pdftex.def 2023-10-23 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count285
 \l__pdf_internal_box=\box57
-) (./report-trepanier.aux
-
-LaTeX Warning: Label `sec:threats-to-validity' multiply defined.
-
-)
+) (./report-trepanier.aux)
 \openout1 = `report-trepanier.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
@@ -466,7 +462,17 @@ Overfull \hbox (9.3265pt too wide) in paragraph at lines 83--95
  [][] 
  []
 
-) (./sections/05-discussion.tex) (./sections/06-threats-to-validity.tex) (./sections/07-conclusion.tex) [3]
+) (./sections/05-discussion.tex [3]
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
+
+ []
+
+) (./sections/06-threats-to-validity.tex
+Underfull \hbox (badness 10000) in paragraph at lines 20--1
+
+ []
+
+) (./sections/07-conclusion.tex)
 Underfull \hbox (badness 3158) in paragraph at lines 51--52
 []\OT1/ptm/m/n/8 T. Wang, Y. Gol-ubev, O. Smirnov, J. Li, T. Bryksin and I.
  []
@@ -497,28 +503,22 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[4
-
-] (./report-trepanier.aux)
+[4] (./report-trepanier.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 4537 strings out of 474397
- 70692 string characters out of 5754184
+ 4540 strings out of 474397
+ 70748 string characters out of 5754184
  1956036 words of memory out of 5000000
- 26534 multiletter control sequences out of 15000+600000
+ 26537 multiletter control sequences out of 15000+600000
  599351 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,10n,65p,734b,260s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report-trepanier.pdf (4 pages, 128282 bytes).
+Output written on report-trepanier.pdf (4 pages, 130401 bytes).
 PDF statistics:
  63 PDF objects out of 1000 (max. 8388607)
  38 compressed objects within 1 object stream

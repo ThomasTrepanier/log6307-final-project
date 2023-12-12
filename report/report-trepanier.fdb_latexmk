@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1702412163 "c:/Users/m_bla/Desktop/Code_Poly/LOG6307/log6307-final-project/report/report-trepanier.tex" "report-trepanier.pdf" "report-trepanier" 1702412164 0
+["pdflatex"] 1702414044 "c:/Users/m_bla/Desktop/Code_Poly/LOG6307/log6307-final-project/report/report-trepanier.tex" "report-trepanier.pdf" "report-trepanier" 1702414045 0
   "IEEEtran.cls" 1696446797 288304 5b2e4fa15b0f7eabb840ebf67df4c0f7 ""
   "c:/Users/m_bla/Desktop/Code_Poly/LOG6307/log6307-final-project/report/report-trepanier.tex" 1702411604 3595 76a25195ecf64141971e2770fe47b221 ""
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc" 1698348449 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -82,13 +82,13 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1698353415 4750288 f1f34006308c654e053d5a8459362656 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1698353661 8208557 d9974cc859aa8dff958084a270c4770a ""
   "c:/texlive/2023/texmf.cnf" 1698353390 713 e69b156964470283e0530f5060668171 ""
-  "report-trepanier.aux" 1702412164 4369 a5ae149bfd4b997c586e38b090010357 "pdflatex"
+  "report-trepanier.aux" 1702414045 4737 c1c59ffd5786cb49cc70589efc9615b1 "pdflatex"
   "report-trepanier.tex" 1702411604 3595 76a25195ecf64141971e2770fe47b221 ""
   "sections/01-introduction.tex" 1700595806 55 6e824a6155503fb1faaf879f6bc88d95 ""
   "sections/02-related-work.tex" 1702412162 3938 0677ba6e87852aaf65f039597a9a50b1 ""
   "sections/03-methodology.tex" 1701557084 6926 d98b6fd2ba41fc07fdbd9ab2e4e14ba3 ""
   "sections/04-results.tex" 1702410889 7791 a947e750c272ad3652db01e467524702 ""
-  "sections/05-discussion.tex" 1700595805 62 d0e835c5841199dc6a91381af75c4fa5 ""
+  "sections/05-discussion.tex" 1702414043 2363 437fbd1fdfbf16149a4b08e6bd837033 ""
   "sections/06-threats-to-validity.tex" 1700595805 62 d0e835c5841199dc6a91381af75c4fa5 ""
   "sections/07-conclusion.tex" 1700595800 46 1fb0a46d19b47b3db3d9dc8c46c051e3 ""
   (generated)

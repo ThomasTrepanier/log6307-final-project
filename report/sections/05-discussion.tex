@@ -1,2 +1,20 @@
-\section{Threats to Validity}
-\label{sec:threats-to-validity}
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{RQ\#1: Code Smells in ChatGPT's answers}
+\label{sec:discussion-rq1}
+It is not surprising to find that ChatGPT produces code smells, as any code base is bound to present some at some point. However, it is interesting to note that it does seem to have an understanding of some code smells and tries to avoid them, such as long methods, long lambdas and Too Many Methods. As discussed before, long methods may be absent because of the short nature of ChatGPT's answer, but as we saw with the Stack Overflow analysis, long methods can still appear in code snippets.
+
+The absence of the Too Many Methods code smell could also be explained by the nature of ChatGPT's answers, as well as the nature of Python. ChatGPT's answers are short, and Python is not an object-oriented language. Therefore, the number of methods in ChatGPT's answers is bound to be low. It is interesting to note however that $Pyscent$ found 11 occurences of the Too Many Attributes code smell, meaning that code smells related to OOP can still be found in ChatGPT's answers.
+
+As for the absence of long lambdas, it is possible that the relatively low number of lambda functions in the dataset led to its absence. However, it is also possible that ChatGPT has a better understanding of the long lambda code smell than it does of other code smells, and therefore tries to avoid it.
+
+It would be difficult nonetheless to identify if ChatGPT has a real understanding of Code Smells as it learned the concept on the internet, or if because the way it was trained to generate code did not include such code smells. \\
+
+\subsection{RQ\#2: SO vs. ChatGPT Code Smells}
+\label{sec:discussion-rq2}
+What could be surprising however is the finding that ChatGPT does not seem to produce a significantly higher number of code smells than Stack Overflow.
+
+In fact, ChatGPT's answer seem to be characterized by a higher amount of the Too Many Attribute, Shotgun Surgery and Long List Comprehension code smells, whereas Stack Overflow's answers are characterized by the presence of useless try/catch, low class cohesion and long lambdas.
+
+What this finding really reminds us however, is that developers should always be careful when integrating exterior code in their projects and should adapt it to meet their standards and practices. \\
