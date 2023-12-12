@@ -1,8 +1,7 @@
 
 import json
-import os
 from conversation_io import ConversationIO
-from model import Code, Conversation, get_file_name, get_json_value_of_dict, string_not_in_english
+from model import Code, Conversation, get_file_name, string_not_in_english
 
 
 class ConversationExtractor:

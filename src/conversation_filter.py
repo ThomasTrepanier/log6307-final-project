@@ -1,8 +1,6 @@
 
-import json
-import os
 from conversation_io import ConversationIO
-from model import Code, Conversation, get_file_name, get_json_value_of_dict
+from model import Conversation
 
 
 class ConversationFilter:
