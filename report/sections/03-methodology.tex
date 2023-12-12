@@ -1,7 +1,7 @@
 
 \section{Methodology}
 \label{sec:methodology}
-The methodology to answer \textit{RQ1} and \textit{RQ2} is mostly the same and can be divided into 5 steps: (1) data collection, (2) code snippet extraction, (3) code snippets filtering, (4) code smell detection, and (5) code smell analysis. The main difference between the two research questions is the data collection step. For \textit{RQ1}, the data used is the DevGPT dataset provided by the MSR2024 challenge \cite{devgpt}. For \textit{RQ2}, a dataset was created using StackOverflow's API following the methodology described in section \ref{sec:data-collection}. \\
+The methodology to answer \textit{RQ1} and \textit{RQ2} is mostly the same and can be divided into 4 steps: (1) data collection, (2) code snippet extraction, (3) code snippets filtering, and (4) code smell detection. The main difference between the two research questions is the data collection step. For \textit{RQ1}, the data used is the DevGPT dataset provided by the MSR2024 challenge \cite{devgpt}. For \textit{RQ2}, a dataset was created using StackOverflow's API following the methodology described in section \ref{sec:data-collection}. \\
 
 All of the code and algorithms to extract and process data was written in Python. The code is available on GitHub \footnote{https://github.com/ThomasTrepanier/log6307-final-project}.
 
@@ -24,7 +24,7 @@ In order to build a dataset of StackOverflow's code snippets, the following appr
 
 \subsection{Code Snippet Extraction}
 \subsubsection{DevGPT Dataset}
-The DevGPT dataset contains conversations between developers and the ChatGPT bot. Each JSON file contains a data structure called \texttt{ChatgptSharing}, itself containing a list of \texttt{Conversation}. Each \texttt{Conversation} contains the prompt given by the developer, the answer given by ChatGPT, and a data structure called \texttt{ListOfCode} containing the code snippets included in ChatGPT's answer. \\
+The DevGPT dataset contains conversations between developers and ChatGPT. Each JSON file contains a data structure called \texttt{ChatgptSharing}, itself containing a list of \texttt{Conversation}. Each \texttt{Conversation} contains the prompt given by the developer, the answer given by ChatGPT, and a data structure called \texttt{ListOfCode} containing the code snippets included in ChatGPT's answer. \\
 
 This \texttt{ListOfCode} itself provides the code snippet emitted by ChatGPT as well as the programming language used in the snippet. \\
 
@@ -40,19 +40,21 @@ The snippet was then parsed from its HTML format to a Unicode format and stored 
 Not all code snippets extracted were used for the code smell detection, since not all of them were suited for the analysis. The definition of a \textit{suitable} code snippet is as follows: \\
 
 \begin{enumerate}
-    \item The code snippet must be in Python. This is because the code smell detection tool used, \textit{PyScent}, is a Python tool. \\
+    \item The code snippet must be in Python. This is because the code smell detection tool used, \textit{Pyscent} , is a Python tool. \\
 
     \item The code snippet must be at least 5 lines long, and contain either a function (defined with the \texttt{def} keyword) or a class (defined with the \texttt{class} keyword). This is to filter out short answers or code snippets that were not actually Python code, such as JSON objects or library import statements. \\
 
-    \item The code snippet must be written entirely in english. This is because non-unicode characters are not supported by \textit{PyScent}. \\
+    \item The code snippet must be written entirely in english. This is because non-unicode characters are not supported by \textit{Pyscent} . \\
 
-    \item The code snippet must not contain any syntax errors. This is because \textit{PyScent} is not able to detect code smells in code that does not compile. To remove the snippets with syntax errors, a program was written to delete export each code snippet to a \texttt{.py} file and try to compile it. If a \texttt{SyntaxError} or \texttt{TypeError} was thrown by Python, the file was assumed to be erronous and deleted from the dataset. \\
+    \item The code snippet must not contain any syntax errors. This is because \textit{Pyscent}  is not able to detect code smells in code that does not compile. To remove the snippets with syntax errors, a program was written to export each code snippet to a \texttt{.py} file and try to compile it. If a \texttt{SyntaxError} or \texttt{TypeError} was thrown by Python, the file was assumed to be erronous and deleted from the dataset. \\
 \end{enumerate}
 
 \subsection{Code Smell Detection}
-The last step was to detect code smells in the code snippets. To do so, the \textit{PyScent} tool was used. \textit{PyScent} is a Python tool that detects code smells in Python code and the source code can be found on Github \footnote{https://github.com/whyjay17/Pyscent}. \\
+The last step was to detect code smells in the code snippets. To do so, the \textit{Pyscent}  tool was used. \textit{Pyscent}  is a Python tool that detects code smells in Python code and the source code can be found on Github \footnote{https://github.com/whyjay17/Pyscent}.
 
-\textit{PyScent} detects the 11 following code smells:
+\newpage
+
+\textit{Pyscent} detects the 11 following code smells:
 
 \begin{itemize}
     \item \textbf{Long Method:} A method with over 50 statements.
@@ -69,7 +71,7 @@ The last step was to detect code smells in the code snippets. To do so, the \tex
 
     \item \textbf{Shotgun Surgery: } A Class that calls more than 5 methods from other classes.
 
-    \item \textbf{Class Cohesion: } A class that has cohesion score lower 30\%. The cohesion score is computed using the Cohesion project on Gitbut \footnote{https://github.com/mschwager/cohesion}.
+    \item \textbf{Class Cohesion: } A class that has cohesion score lower 30\%. The cohesion score is computed using the Cohesion project on Github \footnote{https://github.com/mschwager/cohesion}.
 
     \item \textbf{Code Complexity: } A block that has a cyclomatic complexity score lower than 'C'. The cyclomatic complexity score is computed using the Radon project \footnote{https://pypi.org/project/radon/}.
 
@@ -79,6 +81,6 @@ The last step was to detect code smells in the code snippets. To do so, the \tex
 
 \end{itemize}
 
-To analyse the code snippets, \textit{PyScent} needs them to be in \texttt{.py} files under one directory. Therefore, a program was written to export all of the code snippets to \texttt{.py} files and run \textit{PyScent} on them. \\
+To analyse the code snippets, \textit{Pyscent} needs them to be in \texttt{.py} files under one directory. Therefore, a program was written to export all of the code snippets to \texttt{.py} files and run \textit{Pyscent} on them. \\
 
 The results of the code smell detection are presented in section \ref{sec:results}.
