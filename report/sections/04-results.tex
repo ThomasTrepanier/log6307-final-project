@@ -1,14 +1,14 @@
 \section{Results}
 \label{sec:results}
-In this section, we first present the result of the code smell analysis performed by Pyscent in section \ref{sec:results-code-smell}, then, we compare the results between ChatGPT and Stack Overflow in \ref{sec:results-comparison}. \\
+In this section, we first present the result of the code smell analysis performed by Pyscent in section \ref{sec:results-code-smell}, then, we compare the results between ChatGPT and Stack Overflow in \ref{sec:results-comparison}.
 
 \subsection{Code Smell Results}
 \label{sec:results-code-smell}
-Following the code snippet analysis by Pyscent, a report was generated detailling the number of smells detected for each Code Smell described in section \ref{sec:methodology}. The report also presents the number of possible occurences of each Code Smell, so for example, there were 1247 methods detected in ChatGPT's code snippets, and 9 of them were detected as Long Parameter. \\
+Following the code snippet analysis by Pyscent, a report was generated detailling the number of smells detected for each Code Smell described in section \ref{sec:methodology}. The report also presents the number of possible occurences of each Code Smell, so for example, there were 1247 methods detected in ChatGPT's code snippets, and 9 of them were detected as Long Parameter.
 
-Furthermore, to be able to compare the results between ChatGPT and Stack Overflow, the percentage of each Code Smell was calculated. This percentage is the number of smells detected divided by the number of possible occurences of the smell. \\
+Furthermore, to be able to compare the results between ChatGPT and Stack Overflow, the percentage of each Code Smell was calculated. This percentage is the number of smells detected divided by the number of possible occurences of the smell.
 
-The results of the analysis are presented in tables \ref{table:result-chatgpt} and \ref{table:result-so}. \\
+The results of the analysis are presented in tables \ref{table:result-chatgpt} and \ref{table:result-so}.
 
 \begin{table}[!ht]
     \centering
@@ -31,12 +31,13 @@ The results of the analysis are presented in tables \ref{table:result-chatgpt} a
     \end{tabular}
     \label{table:result-chatgpt}
 \end{table}
+\FloatBarrier
 
-For ChatGPT, we can see that the most common code smell is Shotgun Surgery, with a 70\% occurence rate. This is not surprising, since ChatGPT is not aware of the code context of the developer. Therefore, it will often generate code snippets that are not related to the context. \\
+For ChatGPT, we can see that the most common code smell is Shotgun Surgery, with a 70\% occurence rate. This is not surprising, since ChatGPT is not aware of the code context of the developer. Therefore, it will often generate code snippets that are not related to the context.
 
-We can also observe that ChatGPT tends to write long list comprehension. This might be because the training data it was fed contained a lot of long list comprehension. However, it does not seem to generate long lambdas, which might mean that it is aware of this code smell. \\
+We can also observe that ChatGPT tends to write long list comprehension. This might be because the training data it was fed contained a lot of long list comprehension. However, it does not seem to generate long lambdas, which might mean that it is aware of this code smell.
 
-Finally, we can see that ChatGPT does not generate long methods, which could mean it is also aware of this code smell, but it could also be because ChatGPT does not tend to write long code snippets in general, so the code smell cannot appear. \\
+Finally, we can see that ChatGPT does not generate long methods, which could mean it is also aware of this code smell, but it could also be because ChatGPT does not tend to write long code snippets in general, so the code smell cannot appear.
 
 \begin{table}[!ht]
     \centering
@@ -60,20 +61,20 @@ Finally, we can see that ChatGPT does not generate long methods, which could mea
     \label{table:result-so}
 \end{table}
 
-From Table \ref{table:result-so}, we can see that Stack Overflow's code snippets also tend to have a lot of Shotgun Surgery and long list comprehension, but not as much as ChatGPT. This is probably because Stack Overflow's code snippets are written by humans, who are more aware of those Code Smells. \\
+From Table \ref{table:result-so}, we can see that Stack Overflow's code snippets also tend to have a lot of Shotgun Surgery and long list comprehension, but not as much as ChatGPT. This is probably because Stack Overflow's code snippets are written by humans, who are more aware of those Code Smells.
 
-However, Stack Overflow's code snippet present a higher occurence of useless try/catch and long lambdas compared to ChatGPT's. The first one might be because the developer does not put a lot of thought into the type of error handled by the try/catch to save time, and the second one could be because they want to impress the reader with a complex lambda. \\
+However, Stack Overflow's code snippet present a higher occurence of useless try/catch and long lambdas compared to ChatGPT's. The first one might be because the developer does not put a lot of thought into the type of error handled by the try/catch to save time, and the second one could be because they want to impress the reader with a complex lambda.
 
 Finally, it might be surprising to see that Stack Overflow's code snippets present Code Smells that are not present in any of ChatGPT's, such as long methods, low class cohesion and long lambdas, since we would expect developers to be more aware of Code Smells than ChatGPT.
 
 \subsection{Code Smell Comparison}
 \label{sec:results-comparison}
 
-Table \ref{table:result-comparison} presents the comparison between ChatGPT and Stack Overflow's code smell percentages where the difference is significative ($>0.5\%$). The percentage difference is calculated by substracting the percentage of Stack Overflow's code smells from the percentage of ChatGPT's code smells. \\
+Table \ref{table:result-comparison} presents the comparison between ChatGPT and Stack Overflow's code smell percentages where the difference is significative ($>0.5\%$). The percentage difference is calculated by substracting the percentage of Stack Overflow's code smells from the percentage of ChatGPT's code smells.
 
-Therefore, a positive value means that there are more code smells of this type in Stack Overflow's code snippets, whereas a negative value means that ChatGPT uses this code smell more often. \\
+Therefore, a positive value means that there are more code smells of this type in Stack Overflow's code snippets, whereas a negative value means that ChatGPT uses this code smell more often.
 
-Finally, an overall percentage difference is computed using the sum of the percentage difference for all of the code smells. \\
+Finally, an overall percentage difference is computed using the sum of the percentage difference for all of the code smells.
 
 \begin{table}[!ht]
     \centering
@@ -93,4 +94,4 @@ Finally, an overall percentage difference is computed using the sum of the perce
     \label{table:result-comparison}
 \end{table}
 
-From Table \ref{table:result-comparison}, we can see that ChatGPT's code snippets present more code smells than Stack Overflow's, with an overall difference of -1.04\%. This means that the code quality of ChatGPT is more or less similar to that of Stack Overflow. \\
+From Table \ref{table:result-comparison}, we can see that ChatGPT's code snippets present more code smells than Stack Overflow's, with an overall difference of -1.04\%. This means that the code quality of ChatGPT is more or less similar to that of Stack Overflow.

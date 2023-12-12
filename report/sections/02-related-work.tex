@@ -1,3 +1,24 @@
 
 \section{Related Work}
 \label{sec:related-work}
+\subsection{Automatic Code Smell Detection}
+\label{sec:related-work-automatic-code-smell-detection}
+As early as 2009, work was done to automatically detect code smells in Python projects. Chen \textit{et al.} proposed $Pysmell$ \cite{pysmell}, a program that could detect 11 Python smells with up to 97.7\% detection accuracy. However, the tool is too outdated for the purpose of this research, as it supports Python 2.7 only and most of the code snippets in the dataset are written in Python 3, which makes the tool incompatible with the dataset.
+
+In 2021, Wang \textit{et al.} proposed $PyNose$ \cite{pynose}, a tool that could detect 17 Python smells with up to 94.0\% detection accuracy. However, their tool is not publicly available, so we were not able to use it for this research.
+
+A tool found on Github named $PyScent$ was published in 2019 by Whyjai17 \cite{pyscent}. It is a Python program that uses a existing libraries such as pylint \cite{pylint}, pyflakes \cite{pyflake}, radon \cite{radon} and cohesion \cite{cohesion} to detect 11 code smells in a Python project. It then generates a report in PDF format that contains the results of the analysis. Even though its accuracy has not been studied, following the results of $Pysmell$ and $PyNose$, it is safe to assume that its results are accurate enough for our research.
+
+\subsection{Code Quality of Stack Overflow's answers}
+\label{sec:related-work-code-quality-of-stack-overflow-answers}
+In 2020, Meldrum \textit{et. al.} \cite{meldrum-2020} studied the code quality of Stack Overflow's answers for Java problems. They found that Stack Overflow's answers are not always devoid of code quality problems, finding that there are about 5 violations of \textit{programming rule} per code snippet, and 10.5 readability violations per. They proposed that developers should be cautious when using code snippets from Stack Overflow, and that they should be reviewed before being used.
+
+\subsection{Relation between Code Smell and Software Quality}
+\label{sec:related-work-relation-between-code-smell-and-software-quality}
+The ultimate goal of detection code smells in a project is to evaluate the quality of the software being produced. To this end, several studies have been conducted to determine the relation between code smells and software quality.
+
+In 2012, Yamashita and Moonen \cite{yamashita-2012} studied if code smells reflect important maintainability aspects. They found that code smells do reflect important maintainability features, espacially at the file level. Since we are working with code snippets of similar size to a file, it could mean that code smells found in code snippets impact the maintainability of the software they are integrated in.
+
+Furthermore, in 2018, Spadini \textit{et al.} \cite{spadini-2018} studied the relation between test smells and software quality. They found that test smells lead to more defect-prone production code. Knowing that ChatGPT and other AI code assistants, such as Github Copilot \cite{github-copilot}, are often relied on when writing unit tests, it is important to keep this result in mind as the code smells they generate could lead to more defects in the production code.
+
+Finally, in 2020, Kaur \cite{kaur-2020} found that code smells may have opposit effect on software quality, meaning that some code smell can improve software qualities. This can be explained by code smells such as Code Repetition, which negatively impacts the maintainability of the code base, but can also lead to faster ande more performant code. This result is important to keep in mind, as it could mean that some code smells found in ChatGPT's answers could have a positive impact on the software quality of the code base they are integrated in.
