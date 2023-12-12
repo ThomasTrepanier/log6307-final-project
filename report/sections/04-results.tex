@@ -1,34 +1,96 @@
 \section{Results}
 \label{sec:results}
+In this section, we first present the result of the code smell analysis performed by Pyscent in section \ref{sec:results-code-smell}, then, we compare the results between ChatGPT and Stack Overflow in \ref{sec:results-comparison}. \\
 
-% Please add the following required packages to your document preamble:
-% \usepackage[table,xcdraw]{xcolor}
-% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
-\begin{table}[]
-    \begin{tabular}{lrrr}
-    \rowcolor[HTML]{C0C0C0} 
-    \multicolumn{1}{c}{\cellcolor[HTML]{C0C0C0}\textbf{Smell Name}} & \multicolumn{1}{c}{\cellcolor[HTML]{C0C0C0}\textbf{Smell Count}} & \multicolumn{1}{c}{\cellcolor[HTML]{C0C0C0}\textbf{\begin{tabular}[c]{@{}c@{}}\# of possible \\ occurences\end{tabular}}} & \multicolumn{1}{c}{\cellcolor[HTML]{C0C0C0}\textbf{Percentage (\%)}} \\
-    \rowcolor[HTML]{FFFFFF} 
-    Long Name                                                       & 0                                                                & 1247                                                                                                                      & 0,000\%                                                              \\
-    \rowcolor[HTML]{EFEFEF} 
-    Long Parameter                                                  & 9                                                                & 1247                                                                                                                      & 0,722\%                                                              \\
-    \rowcolor[HTML]{FFFFFF} 
-    Long Branches                                                   & 1                                                                & N/A                                                                                                                       & N/A                                                                  \\
-    \rowcolor[HTML]{EFEFEF} 
-    Too Many Attributes                                             & 11                                                               & 250                                                                                                                       & 4,400\%                                                              \\
-    \rowcolor[HTML]{FFFFFF} 
-    Too Many Methods                                                & 0                                                                & 250                                                                                                                       & 0,000\%                                                              \\
-    \rowcolor[HTML]{EFEFEF} 
-    Useless Try/Catch                                               & 1                                                                & 101                                                                                                                       & 0,990\%                                                              \\
-    \rowcolor[HTML]{FFFFFF} 
-    Shotgun Surgery                                                 & 175                                                              & 250                                                                                                                       & 70,000\%                                                             \\
-    \rowcolor[HTML]{EFEFEF} 
-    Low class cohesion                                              & 0                                                                & 250                                                                                                                       & 0,000\%                                                              \\
-    \rowcolor[HTML]{FFFFFF} 
-    High Code Complexity                                            & 17                                                               & 1497                                                                                                                      & 1,136\%                                                              \\
-    \rowcolor[HTML]{EFEFEF} 
-    Long Lambda                                                     & 0                                                                & 43                                                                                                                        & 0,000\%                                                              \\
-    \rowcolor[HTML]{FFFFFF} 
-    Long List Comprehension                                         & 16                                                               & 59                                                                                                                        & 27,119\%                                                            
+\subsection{Code Smell Results}
+\label{sec:results-code-smell}
+Following the code snippet analysis by Pyscent, a report was generated detailling the number of smells detected for each Code Smell described in section \ref{sec:methodology}. The report also presents the number of possible occurences of each Code Smell, so for example, there were 1247 methods detected in ChatGPT's code snippets, and 9 of them were detected as Long Parameter. \\
+
+Furthermore, to be able to compare the results between ChatGPT and Stack Overflow, the percentage of each Code Smell was calculated. This percentage is the number of smells detected divided by the number of possible occurences of the smell. \\
+
+The results of the analysis are presented in tables \ref{table:result-chatgpt} and \ref{table:result-so}. \\
+
+\begin{table}[!ht]
+    \centering
+    \caption{ChatGPT's Code Smells}
+    \rowcolors{2}{gray!25}{white}
+    \begin{tabular}{llll}
+        \hline
+        \textbf{Smell Name}     & \textbf{Smell Count} & \textbf{\# of poss. occ.} & \textbf{\%} \\ \hline
+        Long Methods            & 0                    & 1247                      & 0.000\%     \\
+        Long Parameter          & 9                    & 1247                      & 0.722\%     \\
+        Long Branches           & 1                    & N/A                       & N/A         \\
+        Too Many Attribute      & 11                   & 250                       & 4.400\%     \\
+        Too Many Methods        & 0                    & 250                       & 0.000\%     \\
+        Useless try/catch       & 1                    & 101                       & 0.990\%     \\
+        Shotgun Surgery         & 175                  & 250                       & 70.000\%    \\
+        Low Class Cohesion      & 0                    & 250                       & 0.000\%     \\
+        Code Complexity ($<$ C) & 17                   & 1497                      & 1.136\%     \\
+        Long Lambda             & 0                    & 43                        & 0.000\%     \\
+        Long List Comprehension & 16                   & 59                        & 27.119\%    \\ \hline
     \end{tabular}
-    \end{table}
+    \label{table:result-chatgpt}
+\end{table}
+
+For ChatGPT, we can see that the most common code smell is Shotgun Surgery, with a 70\% occurence rate. This is not surprising, since ChatGPT is not aware of the code context of the developer. Therefore, it will often generate code snippets that are not related to the context. \\
+
+We can also observe that ChatGPT tends to write long list comprehension. This might be because the training data it was fed contained a lot of long list comprehension. However, it does not seem to generate long lambdas, which might mean that it is aware of this code smell. \\
+
+Finally, we can see that ChatGPT does not generate long methods, which could mean it is also aware of this code smell, but it could also be because ChatGPT does not tend to write long code snippets in general, so the code smell cannot appear. \\
+
+\begin{table}[!ht]
+    \centering
+    \caption{Stack Overflow's Code Smells}
+    \rowcolors{2}{gray!25}{white}
+    \begin{tabular}{llll}
+        \hline
+        \textbf{Smell Name}     & \textbf{Smell Count} & \textbf{\# of poss. occ.} & \textbf{\%} \\ \hline
+        Long Methods            & 5                    & 3438                      & 0.145\%     \\
+        Long Parameter          & 18                   & 3438                      & 0.524\%     \\
+        Long Branches           & 14                   & N/A                       & N/A         \\
+        Too Many Attribute      & 4                    & 592                       & 0.676\%     \\
+        Too Many Methods        & 0                    & 592                       & 0.000\%     \\
+        Useless try/catch       & 19                   & 204                       & 9.314\%     \\
+        Shotgun Surgery         & 376                  & 592                       & 63.514\%    \\
+        Low Class Cohesion      & 14                   & 592                       & 2.365\%     \\
+        Code Complexity ($<$ C) & 41                   & 4030                      & 1.017\%     \\
+        Long Lambda             & 19                   & 146                       & 13.014\%    \\
+        Long List Comprehension & 56                   & 439                       & 12.756\%    \\ \hline
+    \end{tabular}
+    \label{table:result-so}
+\end{table}
+
+From Table \ref{table:result-so}, we can see that Stack Overflow's code snippets also tend to have a lot of Shotgun Surgery and long list comprehension, but not as much as ChatGPT. This is probably because Stack Overflow's code snippets are written by humans, who are more aware of those Code Smells. \\
+
+However, Stack Overflow's code snippet present a higher occurence of useless try/catch and long lambdas compared to ChatGPT's. The first one might be because the developer does not put a lot of thought into the type of error handled by the try/catch to save time, and the second one could be because they want to impress the reader with a complex lambda. \\
+
+Finally, it might be surprising to see that Stack Overflow's code snippets present Code Smells that are not present in any of ChatGPT's, such as long methods, low class cohesion and long lambdas, since we would expect developers to be more aware of Code Smells than ChatGPT.
+
+\subsection{Code Smell Comparison}
+\label{sec:results-comparison}
+
+Table \ref{table:result-comparison} presents the comparison between ChatGPT and Stack Overflow's code smell percentages where the difference is significative ($>0.5\%$). The percentage difference is calculated by substracting the percentage of Stack Overflow's code smells from the percentage of ChatGPT's code smells. \\
+
+Therefore, a positive value means that there are more code smells of this type in Stack Overflow's code snippets, whereas a negative value means that ChatGPT uses this code smell more often. \\
+
+Finally, an overall percentage difference is computed using the sum of the percentage difference for all of the code smells. \\
+
+\begin{table}[!ht]
+    \centering
+    \caption{SO vs. ChatGPT code smells}
+    \rowcolors{2}{gray!25}{white}
+    \begin{tabular}{llll}
+        \hline
+        \textbf{Smell Name}     & \textbf{SO (\%)} & \textbf{ChatGPT \%} & \textbf{ difference (\%) } \\ \hline
+        Too Many Attribute      & 0.68\%           & 4.40\%              & -3.72\%                    \\
+        Useless try/catch       & 9.31\%           & 0.99\%              & 8.32\%                     \\
+        Shotgun Surgery         & 63.51\%          & 70.00\%             & -6.49\%                    \\
+        Low Class Cohesion      & 2.37\%           & 0\%                 & 2.37\%                     \\
+        Long Lambda             & 13.01\%          & 0\%                 & 13.01\%                    \\
+        Long List Comprehension & 12.76\%          & 27.12\%             & -14.36\%                   \\
+        \textbf{Overall}        &                  & ~                   & \textbf{-1.04\%}           \\ \hline
+    \end{tabular}
+    \label{table:result-comparison}
+\end{table}
+
+From Table \ref{table:result-comparison}, we can see that ChatGPT's code snippets present more code smells than Stack Overflow's, with an overall difference of -1.04\%. This means that the code quality of ChatGPT is more or less similar to that of Stack Overflow. \\
