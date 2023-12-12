@@ -15,15 +15,15 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Final Project\\
-{\footnotesize An Empirical Study of the Maintainability of ChatGPT's answers}
+\title{Does ChatGPT smell?\\
+{\footnotesize An empirical analysis of ChatGPT's code quality.}
 }
 
 \author{
-  \IEEEauthorblockN{Thomas Trépanier}
-  \IEEEauthorblockA{\textit{} \\
-    Montréal, Canada \\
-    thomas.trépanier@polytml.ca}
+    \IEEEauthorblockN{Thomas Trépanier}
+    \IEEEauthorblockA{\textit{} \\
+        Montréal, Canada \\
+        thomas.trépanier@polytml.ca}
 }
 
 \maketitle
@@ -32,7 +32,7 @@
 \end{abstract}
 
 \begin{IEEEkeywords}
-  llm, maintainability, ChatGPT, software repository mining
+    chatgpt, code smells, software repository mining, code quality, python
 \end{IEEEkeywords}
 
 
@@ -46,31 +46,33 @@
 
 
 \begin{thebibliography}{00}
-  \bibitem{pysmell}  Z. Chen, L. Chen, W. Ma and B. Xu, ``Detecting Code Smells in Python Programs,'' 2016 International Conference on Software Analysis, Testing and Evolution (SATE), Kunming, China, 2016, pp. 18-23, doi: 10.1109/SATE.2016.10.
+    \bibitem{msr-2024} MSR 2024 Mining Challenge. https://2024.msrconf.org/track/msr-2024-mining-challenge.
 
-  \bibitem{pynose} T. Wang, Y. Golubev, O. Smirnov, J. Li, T. Bryksin and I. Ahmed, ``PyNose: A Test Smell Detector For Python,'' 2021 36th IEEE/ACM International Conference on Automated Software Engineering (ASE), Melbourne, Australia, 2021, pp. 593-605, doi: 10.1109/ASE51524.2021.9678615.
+    \bibitem{pysmell}  Z. Chen, L. Chen, W. Ma and B. Xu, ``Detecting Code Smells in Python Programs,'' 2016 International Conference on Software Analysis, Testing and Evolution (SATE), Kunming, China, 2016, pp. 18-23, doi: 10.1109/SATE.2016.10.
 
-  \bibitem{pyscent} Whyjai17, `` Pyscent''. 2019. https://github.com/whyjay17/Pyscent
+    \bibitem{pynose} T. Wang, Y. Golubev, O. Smirnov, J. Li, T. Bryksin and I. Ahmed, ``PyNose: A Test Smell Detector For Python,'' 2021 36th IEEE/ACM International Conference on Automated Software Engineering (ASE), Melbourne, Australia, 2021, pp. 593-605, doi: 10.1109/ASE51524.2021.9678615.
 
-  \bibitem{pylint} Pylint 2.3.1, https://pypi.org/project/pylint/2.3.1/
+    \bibitem{pyscent} Whyjai17, `` Pyscent''. 2019. https://github.com/whyjay17/Pyscent
 
-  \bibitem{pyflake} Pyflakes 2.1.1, https://pypi.org/project/pyflakes/2.1.1/
+    \bibitem{pylint} Pylint 2.3.1, https://pypi.org/project/pylint/2.3.1/
 
-  \bibitem{radon} Radon 3.0.1, https://pypi.org/project/radon/3.0.1/
+    \bibitem{pyflake} Pyflakes 2.1.1, https://pypi.org/project/pyflakes/2.1.1/
 
-  \bibitem{cohesion} Cohesion 0.9.1, https://pypi.org/project/cohesion/0.9.1/
+    \bibitem{radon} Radon 3.0.1, https://pypi.org/project/radon/3.0.1/
 
-  \bibitem{meldrum-2020} S. Meldrum, S. A. Licorish, C. A. Owen, B. T. Roy Savarimuthu,, ``Understanding stack overflow code quality: A recommendation of caution'', Science of Computer Programming, Volume 199, 2020, 102516, doi: https://doi.org/10.1016/j.scico.2020.102516.
+    \bibitem{cohesion} Cohesion 0.9.1, https://pypi.org/project/cohesion/0.9.1/
 
-  \bibitem{yamashita-2012} A. Yamashita and L. Moonen, ``Do code smells reflect important maintainability aspects?,'' 2012 28th IEEE International Conference on Software Maintenance (ICSM), Trento, Italy, 2012, pp. 306-315, doi: 10.1109/ICSM.2012.6405287.
+    \bibitem{meldrum-2020} S. Meldrum, S. A. Licorish, C. A. Owen, B. T. Roy Savarimuthu,, ``Understanding stack overflow code quality: A recommendation of caution'', Science of Computer Programming, Volume 199, 2020, 102516, doi: https://doi.org/10.1016/j.scico.2020.102516.
 
-  \bibitem{spadini-2018} D. Spadini, F. Palomba, A. Zaidman, M. Bruntink and A. Bacchelli, ``On the Relation of Test Smells to Software Code Quality,'' 2018 IEEE International Conference on Software Maintenance and Evolution (ICSME), Madrid, Spain, 2018, pp. 1-12, doi: 10.1109/ICSME.2018.00010.
+    \bibitem{yamashita-2012} A. Yamashita and L. Moonen, ``Do code smells reflect important maintainability aspects?,'' 2012 28th IEEE International Conference on Software Maintenance (ICSM), Trento, Italy, 2012, pp. 306-315, doi: 10.1109/ICSM.2012.6405287.
 
-  \bibitem{github-copilot} Github Copilot, https://github.com/features/copilot
+    \bibitem{spadini-2018} D. Spadini, F. Palomba, A. Zaidman, M. Bruntink and A. Bacchelli, ``On the Relation of Test Smells to Software Code Quality,'' 2018 IEEE International Conference on Software Maintenance and Evolution (ICSME), Madrid, Spain, 2018, pp. 1-12, doi: 10.1109/ICSME.2018.00010.
 
-  \bibitem{kaur-2020} Kaur, A. ``A Systematic Literature Review on Empirical Analysis of the Relationship Between Code Smells and Software Quality Attributes,'' Arch Computat Methods Eng 27, 1267-1296 (2020). https://doi.org/10.1007/s11831-019-09348-6
+    \bibitem{github-copilot} Github Copilot, https://github.com/features/copilot
 
-  \bibitem{devgpt} NAIST-SE. ``DevGPT: Studying Developer-ChatGPT Conversations''. MSR-2024 Challenge. https://github.com/NAIST-SE/DevGPT
+    \bibitem{kaur-2020} Kaur, A. ``A Systematic Literature Review on Empirical Analysis of the Relationship Between Code Smells and Software Quality Attributes,'' Arch Computat Methods Eng 27, 1267-1296 (2020). https://doi.org/10.1007/s11831-019-09348-6
+
+    \bibitem{devgpt} NAIST-SE. ``DevGPT: Studying Developer-ChatGPT Conversations''. MSR-2024 Challenge. https://github.com/NAIST-SE/DevGPT
 
 \end{thebibliography}
 

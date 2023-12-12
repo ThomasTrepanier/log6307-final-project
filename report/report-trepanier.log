@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  12 DEC 2023 16:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  12 DEC 2023 16:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -298,15 +298,37 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) (./sections/01-introduction.tex) (./sections/02-related-work.tex
-LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
- (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+)) (./sections/01-introduction.tex
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--12
+
+ []
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
+(c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)) (./sections/03-methodology.tex
+)
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--16
+
+ []
+
+) (./sections/02-related-work.tex [1{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}
+
+
+]) (./sections/03-methodology.tex
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
@@ -316,10 +338,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
-[1{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}
 
-
-]
 Underfull \hbox (badness 10000) in paragraph at lines 14--15
 
  []
@@ -407,7 +426,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--41
 
  []
 
-
+[2]
 Underfull \hbox (badness 10000) in paragraph at lines 43--44
 
  []
@@ -442,7 +461,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
-[2]
+
 Underfull \hbox (badness 10000) in paragraph at lines 82--83
 
  []
@@ -452,7 +471,7 @@ Overfull \hbox (3.15065pt too wide) in paragraph at lines 17--33
  [][] 
  []
 
-
+[3]
 Overfull \hbox (3.15065pt too wide) in paragraph at lines 46--62
  [][] 
  []
@@ -462,7 +481,7 @@ Overfull \hbox (3.3265pt too wide) in paragraph at lines 83--95
  [][] 
  []
 
-) (./sections/05-discussion.tex [3]
+) (./sections/05-discussion.tex
 Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
@@ -472,7 +491,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--1
 
  []
 
-
+[4]
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
  []
@@ -512,31 +531,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--1
 
  []
 
-[4])
+)
 Underfull \hbox (badness 10000) in paragraph at lines 10--46
 
  []
 
 
-Underfull \hbox (badness 3158) in paragraph at lines 51--52
+Underfull \hbox (badness 3158) in paragraph at lines 53--54
 []\OT1/ptm/m/n/8 T. Wang, Y. Gol-ubev, O. Smirnov, J. Li, T. Bryksin and I.
  []
 
 
-Underfull \hbox (badness 1496) in paragraph at lines 51--52
+Underfull \hbox (badness 1496) in paragraph at lines 53--54
 \OT1/ptm/m/n/8 IEEE/ACM In-ter-na-tional Con-fer-ence on Au-to-mated Soft-ware En-
  []
 
 
-Underfull \hbox (badness 2293) in paragraph at lines 51--52
+Underfull \hbox (badness 2293) in paragraph at lines 53--54
 \OT1/ptm/m/n/8 gi-neer-ing (ASE), Mel-bourne, Aus-tralia, 2021, pp. 593-605, doi:
  []
 
 
-Underfull \hbox (badness 1694) in paragraph at lines 71--72
+Underfull \hbox (badness 1694) in paragraph at lines 73--74
 []\OT1/ptm/m/n/8 Kaur, A. ``A Sys-tem-atic Lit-er-a-ture Re-view on Em-pir-i-cal Anal-y-
  []
 
+[5]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -548,25 +568,27 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[5] (./report-trepanier.aux)
+[6
+
+] (./report-trepanier.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4542 strings out of 474397
- 70816 string characters out of 5754184
- 1956036 words of memory out of 5000000
- 26539 multiletter control sequences out of 15000+600000
+ 4543 strings out of 474397
+ 70826 string characters out of 5754184
+ 1951036 words of memory out of 5000000
+ 26540 multiletter control sequences out of 15000+600000
  599351 words of font info for 113 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,10n,65p,734b,260s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,10n,65p,775b,260s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report-trepanier.pdf (5 pages, 135186 bytes).
+Output written on report-trepanier.pdf (6 pages, 137640 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
+ 69 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
